@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Term Project Guidelines</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .my-custom-gradient {
+        /* A sleek "Dark Void" gradient: Black to a very deep blue/purple */
+        background: linear-gradient(180deg, #fd6c6c 0%, #7171ce 100%) !important;
+        min-height: 100vh;
+
+    }
+</style>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main class="my-custom-gradient">
+                <v-container class="pa-10">
+                    <v-row justify="center">
+                        <v-col cols="12" md="10" lg="8">
+
+                            <h1 class="text-h3 mb-2 font-weight-bold text-primary">{{ projectTitle }}</h1>
+                            <p class="text-subtitle-1 text-grey-darken-5 mb-8">{{ projectDescription }}</p>
+
+                            <v-card variant="elevated" color="secondary" class="mb-10 pa-4">
+                                <v-card-title class="text-uppercase text-caption font-weight-black">
+                                    Overall Learning Outcomes
+                                </v-card-title>
+                                <v-list bg-color="transparent" density="compact">
+                                    <v-list-item v-for="(outcome, i) in outcomes" :key="i">
+                                        <template v-slot:prepend>
+                                            <v-icon icon="mdi-target" class="mr-"></v-icon>
+                                        </template>
+                                        <v-list-item-title class="text-wrap">{{ outcome }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-card>
+
+                            <v-expansion-panels v-model="openPanels" variant="popout" multiple>
+                                <v-expansion-panel v-for="(stage, index) in stages" :key="index">
+                                    <v-expansion-panel-title class="font-weight-bold">
+                                        {{ stage.title }} ({{ stage.weight }})
+                                    </v-expansion-panel-title>
+
+                                    <v-expansion-panel-text class="bg-grey-lighten-5 pa-4">
+                                        <div class="d-flex flex-column ga-2 mb-4 ">
+                                            <div class="mr-2 mb-2"><b>Due Date:</b> {{stage.due}} </div>
+                                            <div class="mr-2 mb-2"><b>Grace Period:</b> {{ stage.grace }}</div>
+                                            <div class="mr-2 mb-2"><b>Late Submission:</b> {{ stage.late}} </div>
+                                            <div v-if="stage.format" class=""> <b>Submission Type:</b> {{
+                                                stage.format }}</div>
+                                        </div>
+
+                                        <v-divider thickness="2" class="my-4" color="primary">
+                                        </v-divider>
+
+                                        <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
+                                        <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">                                           
+
+                                            <p class="text-body-1">{{ stage.description }}</p>
+                                        </v-sheet>
+                                        <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+
+                                        <div v-if="stage.learningObjectives">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Learning Objectives</h3>
+                                            <v-list density="compact" bg-color="transparent" class="mb-1">
+                                                <v-list-item v-for="obj in stage.learningObjectives" :key="obj"
+                                                    prepend-icon="mdi-circle-medium">
+                                                    <v-list-item-title class="text-wrap text-body-2">{{ obj
+                                                        }}</v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.Deliverables">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Deliverables</h3>
+                                            <div v-for="dev in stage.Deliverables" :key="dev.title" class="mb-4">
+                                                <div class="text-subtitle-2 font-weight-bold text-secondary">{{
+                                                    dev.title }}</div>
+                                                <p class="text-body-2 mb-2" v-if="dev.description">{{
+                                                    dev.description.overview }}</p>
+                                                <v-list v-if="dev.description" density="compact" bg-color="transparent">
+                                                    <v-list-item v-for="bullet in dev.description.items" :key="bullet"
+                                                        prepend-icon="mdi-circle-medium" color="success">
+                                                        <v-list-item-title class="text-wrap text-body-2">{{ bullet
+                                                            }}</v-list-item-title>
+                                                    </v-list-item>
+                                                </v-list>
+                                            </div>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.submissionInstructions">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Submission</h3>
+                                            <p class="text-body-2 mb-2">{{ stage.submissionInstructions.overview }}</p>
+                                            <v-list density="compact" bg-color="transparent" class="mb-6">
+                                                <v-list-item v-for="sub in stage.submissionInstructions.items"
+                                                    :key="sub" prepend-icon="mdi-upload">
+                                                    <v-list-item-title class="text-wrap text-body-2">{{ sub
+                                                        }}</v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </div>
+
+                                        <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+
+                                        <div v-if="stage.stage1Rubric">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-4">Assessment Rubric</h3>
+                                            <v-table density="comfortable" class="border rounded mb-4 bg-transparent">
+                                                <tbody>
+                                                    <template v-for="(rubricRow, rIdx) in stage.stage1Rubric"
+                                                        :key="rIdx">
+                                                        <tr>
+                                                            <td class="font-weight-bold text-body-2 pa-2">{{
+                                                                rubricRow?.criterion }}</td>
+                                                            <td class="text-caption pa-2">{{ rubricRow?.excellent }}
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </v-table>
+                                        </div>
+                                    </v-expansion-panel-text>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.js"></script>
+
+    <script>
+        const { createApp, ref } = Vue;
+        const { createVuetify } = Vuetify;
+        const vuetify = createVuetify({
+            theme: {
+                defaultTheme: 'myCustomTheme',
+                themes: {
+                    myCustomTheme: {
+                        dark: false, // We'll keep it light-coded but use deep colors
+                        colors: {
+                            primary: '#000000',    // Matches the top of your gradient
+                            secondary: '#7171ce',  // Matches the bottom of your gradient
+                            accent: '#FFD700',     // A "fun" gold for buttons/icons
+                            info: '#00E5FF',       // Cyan for highlights
+                            success: '#00C853',
+                            warning: '#FFAB00',
+                            error: '#FF5252',
+                            surface: '#fd6c6c',    // Deep navy cards (looks great on gradients)
+                            'on-surface': '#000000', // Ensures text on cards is white
+                            background: '#ffff0080', // Let the CSS gradient show through
+                        },
+                    },
+                },
+            },
+        });
+
+
+
+        createApp({
+            setup() {
+
+
+                // --- DATA SECTION (Same as your JS object) ---
+                const projectTitle = ref("Term Project Part 1 - Collective Inquiry & App Planning (30% Total)");
+                const projectDescription = ref("In this multi-stage project, we will work together as a class to investigate a real-world issue and reimagine it through a mobile-friendly web app. This project is not just about building a solution, but creating a provocation—a digital tool that makes users think differently about an everyday interaction.")
+                const outcomes = ref([
+                    "Analyze social issues through critical coding theory.",
+                    "Synthesize theory into visual and written pitches.",
+                    "Design component-based UI using Vuetify.",
+                    "Architect preliminary coding logic in Vue.js."
+                ]);
+
+                const stages = ref([
+                    {
+                        title: "Stage 1: Theme Inquiry & Mood Board",
+                        releaseDate: "2026-01-05T08:00:00",
+                        due: "Jan 14 by 11:59pm. Submitting by this date ensures you receive detailed feedback from the professor.", 
+                        grace: "Jan 15-19 by 11:59pm, without penalty, but feedback will not be provided.", 
+                        late: "January 20 - 22 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
+                        weight: "10% of final grade", format: "Group submission",
+                        description: "In this stage, your team will investigate a real-world issue or everyday interaction that connects to our course readings. After, you will write a short proposal and create a mood board that pitches your theme as an app concept that challenges or reimagines how we interact with technology.",
+                        learningObjectives: [
+                            "Analyze a social issue through critical coding theory.",
+                            "Synthesize abstract concepts from course readings into a written and visual pitch.",
+                            "Collaborate effectively within a team to establish a creative direction."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Written Proposal (Approx. 500 words)",
+                                description: {
+                                    overview: "Explain your theme in connection to an idea for an app. Include the following:",
+                                    items: [
+                                        "The Issue: Define the real-world issue you are investigating.",
+                                        "Theoretical Links: Cite at least two course readings. How do these authors help us see this issue differently?",
+                                        "Provocation: Explain how a mobile-friendly web app could reimagine or interrogate this issue. What would the app do to provoke the user?"
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Digital Mood Board",
+                                description: {
+                                    overview: "Create a visual 'map' of your theme. This board should help your classmates 'feel' the problem you are investigating.",
+                                    items: ["Tools: You may use PowerPoint, Miro, Pinterest, or Microsoft Whiteboard",
+                                        "Content: Include images, news headlines, UI screenshots of existing apps, and short, punchy quotes",
+                                        "Clarity: Ensure the board conveys the your theme clearly enough to be used during your Stage 2 pitch"]
+                                }
+                            },
+                        ],
+                        submissionInstructions: {
+                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox 'Theme Inquiry & Mood Board':",
+                            items: [
+                                "The Proposal: A PDF or Word document.",
+                                "The Mood Board: A PDF export or a direct, accessible link (ensure permissions are set to public or anyone with the link)."
+                            ]
+                        },
+                        stage1Rubric: [
+                            {
+                                criterion: "Inquiry & Critical Depth",
+                                excellent: "Deeply engages with a complex issue; provides a sophisticated 'provocation' concept.",
+                                satisfactory: "Identifies a relevant issue and a clear app idea, though the 'provocation' may be surface-level.",
+                                needsImprovement: "Issue is vague or lacks a clear connection to the idea of a digital 'reimagining.'"
+                            },
+                            {
+                                criterion: "Integration of Readings",
+                                excellent: "Accurately cites 2+ readings; shows a strong grasp of how theory applies to the theme.",
+                                satisfactory: "Cites 2 readings; connections are present but may be purely descriptive.",
+                                needsImprovement: "Missing citations or fails to connect the theme to course concepts."
+                            },
+                            {
+                                criterion: "Visual Communication (Mood Board)",
+                                excellent: "Compelling, organized, and professionally curated; tells a clear story without needing much explanation.",
+                                satisfactory: "Good use of imagery; conveys the theme, though some elements may feel disconnected.",
+                                needsImprovement: "Messy or sparse; does not effectively communicate a specific theme or 'vibe.'"
+                            },
+                            {
+                                criterion: "Clarity of Writing",
+                                excellent: "Clear, persuasive, and free of jargon; logic flows naturally from theory to app idea.",
+                                satisfactory: "Generally clear; some sections may be wordy or require more focus.",
+                                needsImprovement: "Difficult to follow; significant grammatical or structural issues."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 2: Theme Pitch & Selection",
+                        releaseDate: "2026-01-15T08:00:00",
+                        due: "January 22 (In-Class)", grace: "No grace period or makeup assignment is available. Failure to present in person will result in zero credit.", late: "N/A",
+                        weight: "5% of final grade", format: "Group presentation",
+                        description: "In this session, every team will pitch their theme to the class. At the end of the session, the class will vote for the most compelling, provocative, and feasible idea that will define our app project for the rest of the term.",
+                        learningObjectives: [
+                            "Public Speaking: Deliver a concise, persuasive pitch for a technical/theoretical concept.",
+                            "Critical Evaluation: Engage with and provide feedback on the work of peers.",
+                            "Consensus Building: Participate in a democratic process to determine the direction of the course's collective project."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "5-Minute Pitch",
+                                description: {
+                                    overview: "Your team will have exactly 5 minutes to present your theme. You should use your Digital Mood Board from Stage 1 as your primary visual aid. Your pitch should:",
+                                    items: ["Hook the Audience: Quickly explain the real-world interaction or issue you chose",
+                                        "Connect the Theory: Briefly explain how the course readings helped you see this problem.",
+                                        "Reimagining: Describe your provocation. What kind of app module could explore or challenge this issue?"]
+                                }
+                            },
+                            {
+                                title: "2-Minute Q&A",
+                                description: {
+                                    overview: "Following your pitch, you will have 2 minutes to answer questions from your classmates or the instructor. Be prepared to defend your choice of theme and explain its relevance to the course.",
+                                    items: []
+                                }
+                            },
+
+                            {
+                                title: "Class Vote",
+                                description: {
+                                    overview: "After all pitches are completed, every student will participate in a vote. You are looking for a theme that is:",
+                                    items: [
+                                        "Provocative: It makes the user think.",
+                                        "Relevant: It connects deeply to the course readings.",
+                                        "Scalable: It allows for different components/modules to be built around it."
+                                    ]
+                                }
+                            }
+                        ],
+                        submissionInstructions: {
+                            overview: "There are no submission files. Your team will present in person during class. Remember to bring your mood board and your proposal to help guide your pitch.",
+                            items: [
+                            ]
+                        },
+                        stage1Rubric: [
+                            {
+                                criterion: "Pitch Quality & Timing",
+                                excellent: "Delivery is confident, professional, and fits within the 5-minute limit.",
+                                satisfactory: "Delivery is clear; may be slightly under or over time but covers most points.",
+                                needsImprovement: "Presentation is disorganized, unclear, or significantly misses the time limit."
+                            },
+                            {
+                                criterion: "Persuasiveness & Vision",
+                                excellent: "Clearly articulates why the theme is a 'provocation'; makes a compelling case for selection.",
+                                satisfactory: "Explains the theme and the app idea clearly, though the 'provocative' edge may be thin.",
+                                needsImprovement: "The pitch fails to explain why this theme matters or how it relates to an app."
+                            },
+                            {
+                                criterion: "Q&A Engagement",
+                                excellent: "Responds to peer questions with depth, showing a strong grasp of the topic.",
+                                satisfactory: "Answers questions directly and accurately.",
+                                needsImprovement: "Unable to answer basic questions about the proposal or theme."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 3: Interface & Component Planning",
+                        releaseDate: "2026-01-22T08:00:00",
+                        due: "January 28 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
+                        grace: "January 29 - February 2 by 11:59 PM, without penalty, but feedback will not be provided.", 
+                        late: "February 3 - 5 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
+                        weight: "10% of total grade", format: "Group submission",
+                        description: "In this stage, your team will propose a comprehensive User Interface (UI) layout. You will determine how a user moves through the app and identify the key modules that will make the app functional and provocative.",
+                        learningObjectives: [
+                            "UI/UX Design: Learn to organize information for a mobile-friendly web environment.",
+                            "Component-Based Thinking: Understand how to break a large app into smaller, manageable modules.",
+                            "Technical Mapping: Connect design choices to specific Vuetify components."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Mockup (Visual Proposal)",
+                                description: {
+                                    overview: "Create a visual representation of the app's layout.",
+                                    items: [
+                                        "Format: You can draw this by hand or use a digital tool like Figma or Adobe Express.",
+                                        "Structure: Show where the navigation, content, and interactive elements live. The layout must be mobile-friendly (vertical orientation).",
+                                        "Module Identification: Your proposal must identify some distinct modules (i.e., sections, zones, areas) (e.g., a reflection input, a data feed, or a control panel."
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Component Map",
+                                description: {
+                                    overview: "On your mockup (or as an attached key), label the specific Vuetify components you plan to use for each section.",
+                                    items: [
+                                        "Examples: v-btn for actions, v-card for content blocks, v-text-field for user input, v-switch for toggling views, etc.",
+                                        "Explanation: Briefly note why a specific component helps convey the theme's provocation."
+                                    ]
+                                }
+                            },
+
+                            {
+                                title: "Online Voting",
+                                description: {
+                                    overview: "Following the submission, your mockup will be shared with the class for an online vote. The winning layout will become the master template that every team uses to build their specific module in the next stage.",
+                                    items: []
+                                }
+                            }
+                        ],
+                        submissionInstructions: {
+                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox:",
+                            items: [
+                                "The Mockup: A high-resolution image (JPG/PNG) or PDF of your layout.",
+                                "The Component Key: A document or labels on your mockup listing the 6 modules and their corresponding Vuetify components."
+                            ]
+                        },
+                        stage1Rubric: [
+                            {
+                                criterion: "Layout & User Flow",
+                                excellent: "Design is intuitive, mobile-friendly, and perfectly captures the 'provocative' nature of the theme.",
+                                satisfactory: "Design is clear and logical, though it may feel like a standard app rather than a provocation.",
+                                needsImprovement: "Layout is confusing, messy, or does not consider the mobile user experience."
+                            },
+                            {
+                                criterion: "Vuetify Integration",
+                                excellent: "Expertly identifies 6 modules using appropriate Vuetify components; mapping is clear and accurate.",
+                                satisfactory: "Identifies 6 modules; uses Vuetify components correctly, though some choices may be generic.",
+                                needsImprovement: "Fewer than 6 modules identified; incorrect or missing Vuetify component mapping."
+                            },
+                            {
+                                criterion: "Creativity & Purpose",
+                                excellent: "The interface design itself contributes to the inquiry; the buttons and cards feel meaningful.",
+                                satisfactory: "The design is functional and supports the theme well.",
+                                needsImprovement: "The design feels disconnected from the winning theme or the course readings."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 4: Component Mockup & Preliminary Logic",
+                        releaseDate: "2026-01-29T08:00:00",
+                        due: "February 11 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.", 
+                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback will not be provided.", 
+                        late: "February 16 - 18 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
+                        weight: "10% of total grade", format: "Group submission",
+                        description: "Now that the class has selected a master layout, your team will claim one of the proposed modules via the sign-up sheet (first-come, first-served). In this stage, you will move into VS Code to build a static version of that module and draft the logic that will eventually make it interactive. This is your first step in turning a drawing into a functional piece of software.",
+                        learningObjectives: [
+                            "Component Development: Translate a visual mockup into Vue.js and Vuetify syntax.",
+                            "Logic Architecture: Identify and define the variables, data types, and conditional logic needed for a specific feature.",
+                            "Technical Documentation: Use code comments to explain pseudo-code and intent."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Vue.js File (Static UI)",
+                                description: {
+                                    overview: "Build the visual structure of your chosen module.",
+                                    items: [
+                                        "Tooling: Use VS Code and the course Vue.js/Vuetify setup.",
+                                        "UI Elements: Use the appropriate Vuetify tags (e.g., v-card, v-list, v-img) to match the master layout design. At this stage, the UI can be static (it doesn't have to do anything yet, but it should look right).",
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Preliminary Logic (The Script)",
+                                description: {
+                                    overview: "Inside your <script> block, prepare the 'brain' of your module:",
+                                    items: [
+                                        "Variables & Data Types: Initialize the variables your module will need. Use appropriate types: Strings for text, Numbers for counters, Booleans for toggles, and Arrays for lists of items.",
+                                        "Logic Comments (Pseudo-code): Use // comments to write out your plan. Example: // If the user clicks the 'Provocation' button, the variable 'showCritique' should change to true.",
+                                        "Bridge: Ensure your variable names are clear and reflect the inquiry theme of the project."
+                                    ]
+                                }
+                            },
+                        ],
+                        submissionInstructions: {
+                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox:",
+                            items: [
+                                "The .vue File: Your component file (e.g., ReflectionModule.vue).",
+                                "A Screenshot: A capture of how the component renders in the browser to ensure the layout is appearing as intended."
+                            ]
+                        },
+                        stage1Rubric: [
+                            {
+                                criterion: "Vuetify Implementation",
+                                excellent: "UI is built cleanly using correct Vuetify syntax; accurately reflects the chosen module from the master layout.",
+                                satisfactory: "UI is functional and uses Vuetify, though some styling or alignment may be off.",
+                                needsImprovement: "UI is incomplete or fails to use the required Vuetify components."
+                            },
+                            {
+                                criterion: "Logic Setup (Script)",
+                                excellent: "Variables are correctly typed (String, Array, etc.); logical plan is clear and ambitious.",
+                                satisfactory: "Variables are present and mostly correct; logical plan is basic but functional.",
+                                needsImprovement: "Script is empty or variables are used incorrectly for the intended task."
+                            },
+                            {
+                                criterion: "Comments & Intent",
+                                excellent: "Professional use of comments to explain pseudo-code; clear roadmap for how the code will work.",
+                                satisfactory: "Comments provide a general idea of what the code is meant to do.",
+                                needsImprovement: "No comments or explanation of how the module's logic will function."
+                            }
+                        ]
+                    },
+                ]);
+
+
+
+                // This function returns an array of indices for stages that have already started
+                const getActiveIndices = () => {
+                    const now = new Date();
+                    return stages.value
+                        .map((stage, index) => {
+                            const release = new Date(stage.releaseDate);
+                            return now >= release ? index : null;
+                        })
+                        .filter(index => index !== null);
+                };
+
+                // Initialize the open panels
+                const openPanels = ref(getActiveIndices());
+
+
+
+                // We "return" the data so the HTML template can see it
+                return {
+                    projectTitle,
+                    projectDescription,
+                    outcomes,
+                    stages,
+                    openPanels,
+                    // dummy definitions to satisfy the compiler's scan
+                    rubricRow: null,
+                    item: null,
+                    row: null
+                }
+            }
+        })
+            .use(vuetify)
+            .mount('#app')
+    </script>
+</body>
+
+</html>
