@@ -63,7 +63,7 @@
                                         </v-divider>
 
                                         <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
-                                        <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">                                           
+                                        <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">
 
                                             <p class="text-body-1">{{ stage.description }}</p>
                                         </v-sheet>
@@ -96,6 +96,22 @@
                                                     </v-list-item>
                                                 </v-list>
                                             </div>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.items">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Resources and Examples</h3>
+                                            <p class="text-body-2 mb-2">{{ stage.resourceTitle || 'Consult the following to guide your work:' }}</p>
+                                            <v-list density="compact" bg-color="transparent" class="mb-4">
+                                                <v-list-item v-for="(item, lIdx) in stage.items" :key="lIdx"
+                                                    :href="item.url" target="_blank" prepend-icon="mdi-link-variant"
+                                                    class="text-primary">
+                                                    <v-list-item-title
+                                                        class="text-wrap text-body-2 text-decoration-underline">
+                                                        {{ item.name }}
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
                                             <v-divider thickness="2" class="my-4" color="primary"></v-divider>
                                         </div>
 
@@ -189,8 +205,8 @@
                     {
                         title: "Stage 1: Theme Inquiry & Mood Board",
                         releaseDate: "2026-01-05T08:00:00",
-                        due: "Jan 14 by 11:59pm. Submitting by this date ensures you receive detailed feedback from the professor.", 
-                        grace: "Jan 15-19 by 11:59pm, without penalty, but feedback will not be provided.", 
+                        due: "Jan 14 by 11:59pm. Submitting by this date ensures you receive detailed feedback from the professor.",
+                        grace: "Jan 15-19 by 11:59pm, without penalty, but feedback will not be provided.",
                         late: "January 20 - 22 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of final grade", format: "Group submission",
                         description: "In this stage, your team will investigate a real-world issue or everyday interaction that connects to our course readings. After, you will write a short proposal and create a mood board that pitches your theme as an app concept that challenges or reimagines how we interact with technology.",
@@ -216,11 +232,22 @@
                                 description: {
                                     overview: "Create a visual 'map' of your theme. This board should help your classmates 'feel' the problem you are investigating.",
                                     items: ["Tools: You may use PowerPoint, Miro, Pinterest, or Microsoft Whiteboard",
-                                        "Content: Include images, news headlines, UI screenshots of existing apps, and short, punchy quotes",
-                                        "Clarity: Ensure the board conveys the your theme clearly enough to be used during your Stage 2 pitch"]
+                                        "Content: Include images, color palettes, news headlines, screenshots of existing apps, and short, punchy quotes",
+                                        "Clarity: Ensure the board conveys the your theme clearly enough to be used during your Stage 2 pitch",
+                                    ]
                                 }
                             },
+
                         ],
+
+                        resourceTitle: "Consult the following resources to guide you:",
+                        items: [
+                            {name: "How to Create a Better Mood Board for UI | Mobile and Web Design", url: "https://www.youtube.com/watch?v=jaXDWCB_0GM"},
+                        {name: "How to make a mood board for your next app or website design", url: "https://penpot.app/blog/how-to-make-a-mood-board-for-your-next-app-or-website-design/"},
+                            {name: "The ultimate guide to mood boards for UI Designers", url: "https://www.uxdesigninstitute.com/blog/mood-boards-for-ui-designers/#what-is-a-mood-board"}
+                        
+                        ],
+
                         submissionInstructions: {
                             overview: "One member of the team must submit the following to the Avenue to Learn Dropbox 'Theme Inquiry & Mood Board':",
                             items: [
@@ -326,7 +353,7 @@
                         title: "Stage 3: Interface & Component Planning",
                         releaseDate: "2026-01-22T08:00:00",
                         due: "January 28 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "January 29 - February 1 by 11:59 PM, without penalty, but feedback will not be provided.", 
+                        grace: "January 29 - February 1 by 11:59 PM, without penalty, but feedback will not be provided.",
                         late: "February 2 - 4 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of total grade", format: "Group submission",
                         description: "In this stage, your team will propose a comprehensive User Interface (UI) layout. You will determine how a user moves through the app and identify the key modules that will make the app functional and provocative.",
@@ -397,8 +424,8 @@
                     {
                         title: "Stage 4: Component Mockup & Preliminary Logic",
                         releaseDate: "2026-01-29T08:00:00",
-                        due: "February 11 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.", 
-                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback will not be provided.", 
+                        due: "February 11 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
+                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback will not be provided.",
                         late: "February 16 - 18 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of total grade", format: "Group submission",
                         description: "Now that the class has selected a master layout, your team will claim one of the proposed modules via the sign-up sheet (first-come, first-served). In this stage, you will move into VS Code to build a static version of that module and draft the logic that will eventually make it interactive. This is your first step in turning a drawing into a functional piece of software.",
