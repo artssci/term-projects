@@ -28,7 +28,7 @@
                         <v-col cols="12" md="10" lg="8">
 
                             <h1 class="text-h3 mb-2 font-weight-bold text-primary">{{ projectTitle }}</h1>
-                            <p class="text-subtitle-1 text-grey-darken-5 mb-8">{{ projectDescription }}</p>
+                            <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded">{{ projectDescription }}</p>
 
                             <v-card variant="elevated" color="secondary" class="mb-10 pa-4">
                                 <v-card-title class="text-uppercase text-caption font-weight-black">
@@ -193,23 +193,23 @@
 
                 // --- DATA SECTION (Same as your JS object) ---
                 const projectTitle = ref("Term Project Part 1 - Collective Inquiry & App Planning (30% Total)");
-                const projectDescription = ref("In this multi-stage project, we will work together as a class to investigate a real-world issue and reimagine it through a mobile-friendly web app. This project is not just about building a solution, but creating a provocation (i.e., a digital tool that makes users think differently about the proposed real-world issue).")
+                const projectDescription = ref("In this multi-stage project, we will work together as a class to investigate a real-world issue and reimagine it through a mobile-friendly web app. This project is not about building a solution, but rather creating a provocation (i.e., a digital tool that makes users think differently about the proposed real-world issue).")
                 const outcomes = ref([
                     "Analyze social issues through critical coding theory.",
                     "Synthesize theory into visual and written pitches.",
-                    "Design component-based UI using Vuetify.",
-                    "Architect preliminary coding logic in Vue.js."
+                    "Design component-based UI using Vuetify (HTML).",
+                    "Architect preliminary coding logic in Vue.js (JavaScript)."
                 ]);
 
                 const stages = ref([
                     {
                         title: "Stage 1: Theme Inquiry & Mood Board",
                         releaseDate: "2026-01-05T08:00:00",
-                        due: "Jan 14 by 11:59pm. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "Jan 15-19 by 11:59pm, without penalty, but feedback will not be provided.",
-                        late: "January 20 - 22 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
+                        due: "Jan 14 by 11:59 pm. Submitting by this date ensures you receive detailed feedback from the professor.",
+                        grace: "Jan 15-19 by 11:59 pm, without penalty, but feedback will not be provided.",
+                        late: "January 20 - 22 by 11:59 pm, with 10% deduction per day. After January 22, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of final grade", format: "Group submission",
-                        description: "In this stage, your team will investigate a real-world issue or everyday interaction that connects to our course readings. After, you will write a short proposal and create a mood board that pitches your theme as an app concept that challenges or reimagines how we interact with technology.",
+                        description: "In this stage, your team will investigate a real-world issue or everyday interaction that connects to our course readings. After, you will write a short proposal and create a mood board that pitches your theme as an app concept based on this issue.",
                         learningObjectives: [
                             "Analyze a social issue through critical coding theory.",
                             "Synthesize abstract concepts from course readings into a written and visual pitch.",
@@ -217,7 +217,7 @@
                         ],
                         Deliverables: [
                             {
-                                title: "Written Proposal (Approx. 500 words)",
+                                title: "Written Proposal (Approx. 800 words)",
                                 description: {
                                     overview: "Explain your theme in connection to an idea for an app. Include the following:",
                                     items: [
@@ -231,9 +231,9 @@
                                 title: "Digital Mood Board",
                                 description: {
                                     overview: "Create a visual 'map' of your theme. This board should help your classmates 'feel' the problem you are investigating.",
-                                    items: ["Tools: You may use PowerPoint, Miro, Pinterest, or Microsoft Whiteboard",
+                                    items: ["Tools: You may use PowerPoint, Microsoft Whiteboard, Miro, or Pinterest,",
                                         "Content: Include images, color palettes, news headlines, screenshots of existing apps, and short, punchy quotes",
-                                        "Clarity: Ensure the board conveys the your theme clearly enough to be used during your Stage 2 pitch",
+                                        "Clarity: Ensure the board conveys the your theme clearly enough since you will use it during your Stage 2 pitch",
                                     ]
                                 }
                             },
@@ -249,7 +249,7 @@
                         ],
 
                         submissionInstructions: {
-                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox 'Theme Inquiry & Mood Board':",
+                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox 'Theme Inquiry':",
                             items: [
                                 "The Proposal: A PDF or Word document.",
                                 "The Mood Board: A PDF export or a direct, accessible link (ensure permissions are set to public or anyone with the link)."
