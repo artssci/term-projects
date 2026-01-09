@@ -28,7 +28,8 @@
                         <v-col cols="12" md="10" lg="8">
 
                             <h1 class="text-h3 mb-2 font-weight-bold text-primary">{{ projectTitle }}</h1>
-                            <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded">{{ projectDescription }}</p>
+                            <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded">{{
+                                projectDescription }}</p>
 
                             <v-card variant="elevated" color="secondary" class="mb-10 pa-4">
                                 <v-card-title class="text-uppercase text-caption font-weight-black">
@@ -100,8 +101,10 @@
                                         </div>
 
                                         <div v-if="stage.items">
-                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Resources and Examples</h3>
-                                            <p class="text-body-2 mb-2">{{ stage.resourceTitle || 'Consult the following to guide your work:' }}</p>
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Resources and Examples
+                                            </h3>
+                                            <p class="text-body-2 mb-2">{{ stage.resourceTitle || `Consult the following
+                                                to guide your work:` }}</p>
                                             <v-list density="compact" bg-color="transparent" class="mb-4">
                                                 <v-list-item v-for="(item, lIdx) in stage.items" :key="lIdx"
                                                     :href="item.url" target="_blank" prepend-icon="mdi-link-variant"
@@ -221,8 +224,8 @@
                                 description: {
                                     overview: "Explain your theme in connection to an idea for an app. Include the following:",
                                     items: [
-                                        "The Issue: Define the real-world issue you are investigating.",
-                                        "Theoretical Links: Cite at least two course readings. How do these authors help us see this issue differently?",
+                                        "Real-world Issue: Define the issue you are investigating. To ensure depth and specificity, analyze it in relation to at least one news article or other media forms (e.g., films, books/literature, or social media)",
+                                        "Theoretical Links: Cite at least two course readings. In addition to the course readings, you can also reference readings outside the course. How do these authors help us see this issue differently?",
                                         "Provocation: Explain how a mobile-friendly web app could reimagine or interrogate this issue. What would the app do to provoke the user?"
                                     ]
                                 }
@@ -242,10 +245,10 @@
 
                         resourceTitle: "Consult the following resources to guide you:",
                         items: [
-                            {name: "How to Create a Better Mood Board for UI | Mobile and Web Design", url: "https://www.youtube.com/watch?v=jaXDWCB_0GM"},
-                        {name: "How to make a mood board for your next app or website design", url: "https://penpot.app/blog/how-to-make-a-mood-board-for-your-next-app-or-website-design/"},
-                            {name: "The ultimate guide to mood boards for UI Designers", url: "https://www.uxdesigninstitute.com/blog/mood-boards-for-ui-designers/#what-is-a-mood-board"}
-                        
+                            { name: "How to Create a Better Mood Board for UI | Mobile and Web Design", url: "https://www.youtube.com/watch?v=jaXDWCB_0GM" },
+                            { name: "How to make a mood board for your next app or website design", url: "https://penpot.app/blog/how-to-make-a-mood-board-for-your-next-app-or-website-design/" },
+                            { name: "The ultimate guide to mood boards for UI Designers", url: "https://www.uxdesigninstitute.com/blog/mood-boards-for-ui-designers/#what-is-a-mood-board" }
+
                         ],
 
                         submissionInstructions: {
@@ -258,14 +261,14 @@
                         stage1Rubric: [
                             {
                                 criterion: "Inquiry & Critical Depth",
-                                excellent: "Deeply engages with a complex issue; provides a sophisticated 'provocation' concept.",
+                                excellent: "Demonstrates deep engagement with a complex issue by grounding it in a news article or relevant media (e.g., film, literature, social media); proposes a sophisticated and original 'provocation' concept.",
                                 satisfactory: "Identifies a relevant issue and a clear app idea, though the 'provocation' may be surface-level.",
                                 needsImprovement: "Issue is vague or lacks a clear connection to the idea of a digital 'reimagining.'"
                             },
                             {
                                 criterion: "Integration of Readings",
-                                excellent: "Accurately cites 2+ readings; shows a strong grasp of how theory applies to the theme.",
-                                satisfactory: "Cites 2 readings; connections are present but may be purely descriptive.",
+                                excellent: "Accurately cites 2 readings from the course; shows a strong grasp of how theory applies to the theme.",
+                                satisfactory: "Cites 2 readings from the course; connections are present but may be purely descriptive.",
                                 needsImprovement: "Missing citations or fails to connect the theme to course concepts."
                             },
                             {
