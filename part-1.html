@@ -132,11 +132,11 @@
 
                                         <v-divider thickness="2" class="my-4" color="primary"></v-divider>
 
-                                        <div v-if="stage.stage1Rubric">
+                                        <div v-if="stage.stageRubric">
                                             <h3 class="text-subtitle-1 font-weight-bold mb-4">Assessment Rubric</h3>
                                             <v-table density="comfortable" class="border rounded mb-4 bg-transparent">
                                                 <tbody>
-                                                    <template v-for="(rubricRow, rIdx) in stage.stage1Rubric"
+                                                    <template v-for="(rubricRow, rIdx) in stage.stageRubric"
                                                         :key="rIdx">
                                                         <tr>
                                                             <td class="font-weight-bold text-body-2 pa-2">{{
@@ -226,7 +226,7 @@
                                     items: [
                                         "Real-world Issue: Define the issue you are investigating. To ensure depth and specificity, analyze it in relation to at least one news article or other media forms (e.g., films, books/literature, or social media).",
                                         "Theoretical Links: Cite at least two course readings. In addition to the course readings, you can also reference external readings. Discuss how do these authors help us see this issue differently?",
-                                        "Provocation: Explain how a mobile-friendly web app could reimagine or interrogate this issue. Discus what would the app do to provoke critical reflection on the user?"
+                                        "Provocation: Explain how a mobile-friendly web app could reimagine or interrogate this issue. Discuss what would the app do to provoke critical reflection on the user?"
                                     ]
                                 }
                             },
@@ -258,27 +258,27 @@
                                 "The Mood Board: A PDF export or a direct, accessible link (ensure permissions are set to public or anyone with the link)."
                             ]
                         },
-                        stage1Rubric: [
+                        stageRubric: [
                             {
-                                criterion: "Inquiry & Critical Depth",
+                                criterion: "Inquiry & Critical Depth (2.5%)",
                                 excellent: "Demonstrates deep engagement with a complex issue by grounding it in a news article or relevant media (e.g., film, literature, social media); proposes a sophisticated and original 'provocation' concept.",
                                 satisfactory: "Identifies a relevant issue and a clear app idea, though the 'provocation' may be surface-level.",
                                 needsImprovement: "Issue is vague or lacks a clear connection to the idea of a digital 'reimagining.'"
                             },
                             {
-                                criterion: "Integration of Readings",
+                                criterion: "Integration of Readings (2.5%)",
                                 excellent: "Accurately cites 2 readings from the course; shows a strong grasp of how theory applies to the theme.",
                                 satisfactory: "Cites 2 readings from the course; connections are present but may be purely descriptive.",
                                 needsImprovement: "Missing citations or fails to connect the theme to course concepts."
                             },
                             {
-                                criterion: "Visual Communication (Mood Board)",
+                                criterion: "Visual Communication (Mood Board) (2.5%)",
                                 excellent: "Compelling, organized, and professionally curated; tells a clear story without needing much explanation.",
                                 satisfactory: "Good use of imagery; conveys the theme, though some elements may feel disconnected.",
                                 needsImprovement: "Messy or sparse; does not effectively communicate a specific theme or 'vibe.'"
                             },
                             {
-                                criterion: "Clarity of Writing",
+                                criterion: "Clarity of Writing (2.5%)",
                                 excellent: "Clear, persuasive, and free of jargon; logic flows naturally from theory to app idea.",
                                 satisfactory: "Generally clear; some sections may be wordy or require more focus.",
                                 needsImprovement: "Difficult to follow; significant grammatical or structural issues."
@@ -290,9 +290,9 @@
                         releaseDate: "2026-01-15T08:00:00",
                         due: "January 22 (In-Class)", grace: "No grace period or makeup assignment is available. Failure to present in person will result in zero credit.", late: "N/A",
                         weight: "5% of final grade", format: "Group presentation",
-                        description: "In this session, every team will pitch their theme to the class. At the end of the session, the class will vote for the most compelling, provocative, and feasible idea that will define our app project for the rest of the term.",
+                        description: "In this stage, every team will pitch their theme to the class. At the end of the presentations, the class will vote for the most compelling, provocative, and feasible idea that will define our app project for the rest of the term.",
                         learningObjectives: [
-                            "Public Speaking: Deliver a concise, persuasive pitch for a technical/theoretical concept.",
+                            "Public Speaking: Deliver a concise, persuasive pitch for a technical and theoretical concept.",
                             "Critical Evaluation: Engage with and provide feedback on the work of peers.",
                             "Consensus Building: Participate in a democratic process to determine the direction of the course's collective project."
                         ],
@@ -300,10 +300,10 @@
                             {
                                 title: "5-Minute Pitch",
                                 description: {
-                                    overview: "Your team will have exactly 5 minutes to present your theme. You should use your Digital Mood Board from Stage 1 as your primary visual aid. Your pitch should:",
+                                    overview: "Your team will have 5 minutes to present your theme. You should use your Digital Mood Board from Stage 1 as your primary visual aid. Your pitch should:",
                                     items: ["Hook the Audience: Quickly explain the real-world interaction or issue you chose",
                                         "Connect the Theory: Briefly explain how the course readings helped you see this problem.",
-                                        "Reimagining: Describe your provocation. What kind of app module could explore or challenge this issue?"]
+                                        "Persuade Through Your Provocation: How a mobile-friendly web app could reimagine or interrogate this issue. What would the app do to provoke critical reflection on the user?"]
                                 }
                             },
                             {
@@ -317,21 +317,29 @@
                             {
                                 title: "Class Vote",
                                 description: {
-                                    overview: "After all pitches are completed, every student will participate in a vote. You are looking for a theme that is:",
+                                    overview: "After all pitches are completed, every student will participate in a vote. We are looking for a theme that is:",
                                     items: [
                                         "Provocative: It makes the user think.",
-                                        "Relevant: It connects deeply to the course readings.",
-                                        "Scalable: It allows for different components/modules to be built around it."
+                                        "Relevant: It connects deeply to the course readings and real-world issues.",
+                                        "Feasible and Scalable: It allows for different components/modules/pages that are easy for beginners to understand and build with the course languages and libraries: JavaScript and Vuetify."
                                     ]
                                 }
                             }
                         ],
+
+                        resourceTitle: "Consult the following resources to guide you:",
+                        items: [
+                            { name: "What is Vuetify?", url: "https://youtu.be/2uZYKcKHgU0?si=FGudHF4VhZu0eIWM" },
+                            { name: "Vuetify Component Framework", url: "https://vuetifyjs.com/en/" },
+                            { name: "How to pitch your designs like a pro", url: "https://www.youtube.com/watch?v=w3CtCzW9G8s" }
+                        ],
+
                         submissionInstructions: {
                             overview: "There are no submission files. Your team will present in person during class. Remember to bring your mood board and your proposal to help guide your pitch.",
                             items: [
                             ]
                         },
-                        stage1Rubric: [
+                        stageRubric: [
                             {
                                 criterion: "Pitch Quality & Timing",
                                 excellent: "Delivery is confident, professional, and fits within the 5-minute limit.",
@@ -343,6 +351,12 @@
                                 excellent: "Clearly articulates why the theme is a 'provocation'; makes a compelling case for selection.",
                                 satisfactory: "Explains the theme and the app idea clearly, though the 'provocative' edge may be thin.",
                                 needsImprovement: "The pitch fails to explain why this theme matters or how it relates to an app."
+                            },
+                            {
+                                criterion: "Theory & Feasibility",
+                                excellent: "Integrates course readings into the pitch to discuss the theme. The app idea is realistic for beginners and takes into account the languages and libraries of the course: JavaScript and Vuetify.",
+                                satisfactory: "Answers questions directly and accurately.",
+                                needsImprovement: "Unable to answer basic questions about the proposal or theme."
                             },
                             {
                                 criterion: "Q&A Engagement",
@@ -403,7 +417,7 @@
                                 "The Component Key: A document or labels on your mockup listing the 6 modules and their corresponding Vuetify components."
                             ]
                         },
-                        stage1Rubric: [
+                        stageRubric: [
                             {
                                 criterion: "Layout & User Flow",
                                 excellent: "Design is intuitive, mobile-friendly, and perfectly captures the 'provocative' nature of the theme.",
@@ -467,7 +481,7 @@
                                 "A Screenshot: A capture of how the component renders in the browser to ensure the layout is appearing as intended."
                             ]
                         },
-                        stage1Rubric: [
+                        stageRubric: [
                             {
                                 criterion: "Vuetify Implementation",
                                 excellent: "UI is built cleanly using correct Vuetify syntax; accurately reflects the chosen module from the master layout.",
