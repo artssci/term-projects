@@ -23,11 +23,11 @@
     <div id="app">
         <v-app>
             <v-main class="my-custom-gradient">
-                <v-container class="pa-10">
+                <v-container>
                     <v-row justify="center">
                         <v-col cols="12" md="10" lg="8">
 
-                            <h1 class="text-h3 mb-2 font-weight-bold text-primary">{{ projectTitle }}</h1>
+                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white">{{ projectTitle }}</h1>
                             <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded">{{
                                 projectDescription }}</p>
 
@@ -45,9 +45,9 @@
                                 </v-list>
                             </v-card>
 
-                            <v-expansion-panels v-model="openPanels" variant="popout" multiple>
+                            <v-expansion-panels v-model="openPanel" variant="popout" multiple>
                                 <v-expansion-panel v-for="(stage, index) in stages" :key="index">
-                                    <v-expansion-panel-title class="font-weight-bold">
+                                    <v-expansion-panel-title class="font-weight-bold text-white">
                                         {{ stage.title }} ({{ stage.weight }})
                                     </v-expansion-panel-title>
 
@@ -66,7 +66,7 @@
                                         <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
                                         <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">
 
-                                            <p class="text-body-1">{{ stage.description }}</p>
+                                            <p class="text-body-1 text-white font-weight-bold">{{ stage.description }}</p>
                                         </v-sheet>
                                         <v-divider thickness="2" class="my-4" color="primary"></v-divider>
 
@@ -348,13 +348,13 @@
                             },
                             {
                                 criterion: "Persuasiveness & Vision (1.25%)",
-                                excellent: "Articulates the provocation clearly by engaging the audience with effective storytelling.The pitch is explicit about what the app aims to achieve and why it matters.",
+                                excellent: "Articulates the real-world issue and the provocation clearly by engaging the audience with effective storytelling.The pitch is explicit about what the app aims to achieve and why it matters.",
                                 satisfactory: "Explains the theme and the app idea clearly, though the 'provocative' edge may be thin.",
                                 needsImprovement: "The pitch fails to explain why this theme matters or how it relates to an app."
                             },
                             {
                                 criterion: "Theory & Feasibility (1.25%)",
-                                excellent: "Integrates course readings into the pitch to discuss the theme. The app idea is realistic for beginners and takes into account the languages and libraries of the course: JavaScript and Vuetify.",
+                                excellent: "Connects theory with technical feasibility very effectively. The app idea is realistic for beginners and takes into account the languages and libraries of the course: JavaScript and Vuetify.",
                                 satisfactory: "Answers questions directly and accurately.",
                                 needsImprovement: "Unable to answer basic questions about the proposal or theme."
                             },
@@ -505,20 +505,22 @@
                 ]);
 
 
-
-                // This function returns an array of indices for stages that have already started
-                const getActiveIndices = () => {
+                // Initialize with a single value instead of an array
+                const getActiveIndex = () => {
                     const now = new Date();
-                    return stages.value
-                        .map((stage, index) => {
-                            const release = new Date(stage.releaseDate);
-                            return now >= release ? index : null;
-                        })
-                        .filter(index => index !== null);
+
+                    // We want the HIGHEST index where the date has already passed
+                    // .findLastIndex is perfect for this
+                    const index = stages.value.findLastIndex(stage => {
+                        return now >= new Date(stage.releaseDate);
+                    });
+
+                    // If no stages have started yet, default to 0 or -1
+                    return index !== -1 ? index : 0;
                 };
 
-                // Initialize the open panels
-                const openPanels = ref(getActiveIndices());
+                // Use a single number ref
+                const openPanel = ref(getActiveIndex());
 
 
 
@@ -528,7 +530,7 @@
                     projectDescription,
                     outcomes,
                     stages,
-                    openPanels,
+                    openPanel,
                     // dummy definitions to satisfy the compiler's scan
                     rubricRow: null,
                     item: null,
