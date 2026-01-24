@@ -374,7 +374,7 @@
                         grace: "February 5 - February 8 by 11:59 PM, without penalty, but feedback might not be provided.",
                         late: "February 9 - 11 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of total grade", format: "Group submission",
-                        description: "In this stage, your team will propose a User Interface (UI) layout: You will identify the key modules that will make the app functional and provocative and determine how the user would move through the app.",
+                        description: "In this stage, your team will propose a User Interface layout and propose key modules that will make the app functional and provocative.",
                         learningObjectives: [
                             "UI/UX Design: Learn to organize information for a mobile-friendly web environment.",
                             "Component-Based Thinking: Understand how to break a large app into smaller, manageable modules.",
@@ -384,12 +384,11 @@
                             {
                                 title: "Mockup (Visual Proposal)",
                                 description: {
-                                    overview: "Create a visual representation of the app's layout.",
-                                    items: [
-                                        "Format: You can draw this by hand or use a digital tool like Figma or Adobe Express.",
-                                        "Structure: Show where the navigation, content, and interactive elements live. The layout must be for laptop, not for cellphone.",
-                                        "Module Identification: Your proposal must identify 2-4 distinct modules/pages (e.g., a data feed, control panel). Include brief annotations why a specific module helps convey the theme's provocation.",
-                                        "Component Map: On your mockup, label the specific Vuetify components/elements  (e.g., v-card, v-btn, v-nav-drawer, etc.) you plan to use for each section of your proposed modules/pages. "
+                                    overview: "Create a visual representation of your app. You can draw it by hand or use a digital tool like Figma. Your mockup should include on the following three elements:",
+                                    items: [                                        
+                                        "Layout & User Flow: Show where the navigation, content, and interactive elements live. The layout must be for laptop, not for cellphone.",
+                                        "Modules: In your mockup, propose 2-3 distinct modules/pages (e.g., a data feed, control panel). Include brief annotations why a specific module helps convey the theme's provocation.",
+                                        "Components: On your mockup, label the specific Vuetify components/elements  (e.g., v-card, v-btn, v-nav-drawer, etc.) you plan to use for each section of your proposed modules/pages. "
                                     ]
                                 }
                             },
@@ -411,7 +410,7 @@
                         stageRubric: [
                             {
                                 criterion: "Mockup Clarity & Presentation",
-                                excellent: "The mockup (digital or hand-drawn) is easy to read and professionally presented. It clearly distinguishes between navigation, content areas, and interactive elements.",
+                                excellent: "The visual proposal is organized and easy to interpret. Whether hand-drawn or digital, the distinction between navigation, content, and interactive zones is clear.",
                                 satisfactory: "The design is functional and supports the theme well.",
                                 needsImprovement: "The design feels disconnected from the winning theme or the course readings."
                             },
@@ -422,13 +421,13 @@
                                 needsImprovement: "Layout is confusing, messy, or does not consider the mobile user experience."
                             },
                             {
-                                criterion: "Module Logic & Provocation",
-                                excellent: "2-4 distinct modules are identified. Annotations clearly explain how these modules support the provocative theme of the app (the why behind the design).",
+                                criterion: "Module Identification",
+                                excellent: "2-3 distinct modules are identified. Annotations clearly explain how these modules support the provocative theme of the app (the why behind the design).",
                                 satisfactory: "Identifies 6 modules; uses Vuetify components correctly, though some choices may be generic.",
                                 needsImprovement: "Fewer than 6 modules identified; incorrect or missing Vuetify component mapping."
                             },                             
                             {
-                                criterion: "Technical Component Mapping", 
+                                criterion: "Component Mapping", 
                                 excellent: "All key sections are labeled with the correct Vuetify component names (e.g., v-card, v-btn, v-nav-drawer). The components chosen match the intended function.",
                                 satisfactory:"", 
                                 needsImprovement:""
