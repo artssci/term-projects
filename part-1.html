@@ -66,7 +66,8 @@
                                         <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
                                         <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">
 
-                                            <p class="text-body-1 text-white font-weight-bold">{{ stage.description }}</p>
+                                            <p class="text-body-1 text-white font-weight-bold">{{ stage.description }}
+                                            </p>
                                         </v-sheet>
                                         <v-divider thickness="2" class="my-4" color="primary"></v-divider>
 
@@ -209,7 +210,7 @@
                         title: "Stage 1: Theme Inquiry & Mood Board",
                         releaseDate: "2026-01-05T08:00:00",
                         due: "Jan 14 by 11:59 pm. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "Jan 15-19 by 11:59 pm, without penalty, but feedback will not be provided.",
+                        grace: "Jan 15-19 by 11:59 pm, without penalty, but feedback might not be provided.",
                         late: "January 20 - 22 by 11:59 pm, with 10% deduction per day. After January 22, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of final grade", format: "Group submission",
                         description: "In this stage, your team will investigate a real-world issue or everyday interaction that connects to our course readings. After, you will write a short proposal and create a mood board that pitches your theme as an app concept based on this issue.",
@@ -287,7 +288,7 @@
                     },
                     {
                         title: "Stage 2: Theme Pitch & Selection",
-                        releaseDate: "2026-01-29T08:00:00",
+                        releaseDate: "2026-01-22T08:00:00",
                         due: "January 29 (In-Class Presentation)", grace: "No grace period or makeup assignment is available. Failure to present in person will result in zero credit.", late: "N/A",
                         weight: "5% of final grade", format: "Group presentation",
                         description: "In this stage, every team will pitch their theme to the class. At the end of the presentations, the class will vote for the most compelling, provocative, and feasible idea that will define our app project for the rest of the term.",
@@ -370,10 +371,10 @@
                         title: "Stage 3: Interface & Component Planning",
                         releaseDate: "2026-01-29T08:00:00",
                         due: "February 4 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "February 5 - February 8 by 11:59 PM, without penalty, but feedback will not be provided.",
+                        grace: "February 5 - February 8 by 11:59 PM, without penalty, but feedback might not be provided.",
                         late: "February 9 - 11 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "10% of total grade", format: "Group submission",
-                        description: "In this stage, your team will propose a comprehensive User Interface (UI) layout. You will determine how a user moves through the app and identify the key modules that will make the app functional and provocative.",
+                        description: "In this stage, your team will propose a User Interface (UI) layout: You will identify the key modules that will make the app functional and provocative and determine how the user would move through the app.",
                         learningObjectives: [
                             "UI/UX Design: Learn to organize information for a mobile-friendly web environment.",
                             "Component-Based Thinking: Understand how to break a large app into smaller, manageable modules.",
@@ -386,18 +387,9 @@
                                     overview: "Create a visual representation of the app's layout.",
                                     items: [
                                         "Format: You can draw this by hand or use a digital tool like Figma or Adobe Express.",
-                                        "Structure: Show where the navigation, content, and interactive elements live. The layout must be mobile-friendly (vertical orientation).",
-                                        "Module Identification: Your proposal must identify some distinct modules (i.e., sections, zones, areas) (e.g., a reflection input, a data feed, or a control panel."
-                                    ]
-                                }
-                            },
-                            {
-                                title: "Component Map",
-                                description: {
-                                    overview: "On your mockup (or as an attached key), label the specific Vuetify components you plan to use for each section.",
-                                    items: [
-                                        "Examples: v-btn for actions, v-card for content blocks, v-text-field for user input, v-switch for toggling views, etc.",
-                                        "Explanation: Briefly note why a specific component helps convey the theme's provocation."
+                                        "Structure: Show where the navigation, content, and interactive elements live. The layout must be for laptop, not for cellphone.",
+                                        "Module Identification: Your proposal must identify 2-4 distinct modules/pages (e.g., a data feed, control panel). Include brief annotations why a specific module helps convey the theme's provocation.",
+                                        "Component Map: On your mockup, label the specific Vuetify components/elements  (e.g., v-card, v-btn, v-nav-drawer, etc.) you plan to use for each section of your proposed modules/pages. "
                                     ]
                                 }
                             },
@@ -411,30 +403,35 @@
                             }
                         ],
                         submissionInstructions: {
-                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox:",
+                            overview: "One member of the team must post the following to the Avenue to Learn Forum 'Interface Component & Planning':",
                             items: [
-                                "The Mockup: A high-resolution image (JPG/PNG) or PDF of your layout.",
-                                "The Component Key: A document or labels on your mockup listing the 6 modules and their corresponding Vuetify components."
+                                "The Mockup: A high-resolution image (JPG/PNG) or PDF of your layout."
                             ]
                         },
                         stageRubric: [
                             {
+                                criterion: "Mockup Clarity & Presentation",
+                                excellent: "The mockup (digital or hand-drawn) is easy to read and professionally presented. It clearly distinguishes between navigation, content areas, and interactive elements.",
+                                satisfactory: "The design is functional and supports the theme well.",
+                                needsImprovement: "The design feels disconnected from the winning theme or the course readings."
+                            },
+                            {
                                 criterion: "Layout & User Flow",
-                                excellent: "Design is intuitive, mobile-friendly, and perfectly captures the 'provocative' nature of the theme.",
+                                excellent: "The design is specifically structured for a laptop screen (utilizing horizontal space) rather than a vertical mobile view. User movement between sections is logical and easy to follow.",
                                 satisfactory: "Design is clear and logical, though it may feel like a standard app rather than a provocation.",
                                 needsImprovement: "Layout is confusing, messy, or does not consider the mobile user experience."
                             },
                             {
-                                criterion: "Vuetify Integration",
-                                excellent: "Expertly identifies 6 modules using appropriate Vuetify components; mapping is clear and accurate.",
+                                criterion: "Module Logic & Provocation",
+                                excellent: "2-4 distinct modules are identified. Annotations clearly explain how these modules support the provocative theme of the app (the why behind the design).",
                                 satisfactory: "Identifies 6 modules; uses Vuetify components correctly, though some choices may be generic.",
                                 needsImprovement: "Fewer than 6 modules identified; incorrect or missing Vuetify component mapping."
-                            },
+                            },                             
                             {
-                                criterion: "Creativity & Purpose",
-                                excellent: "The interface design itself contributes to the inquiry; the buttons and cards feel meaningful.",
-                                satisfactory: "The design is functional and supports the theme well.",
-                                needsImprovement: "The design feels disconnected from the winning theme or the course readings."
+                                criterion: "Technical Component Mapping", 
+                                excellent: "All key sections are labeled with the correct Vuetify component names (e.g., v-card, v-btn, v-nav-drawer). The components chosen match the intended function.",
+                                satisfactory:"", 
+                                needsImprovement:""
                             }
                         ]
                     },
@@ -442,7 +439,7 @@
                         title: "Stage 4: Component Mockup & Preliminary Logic",
                         releaseDate: "2026-02-05T08:00:00",
                         due: "February 11 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback will not be provided.",
+                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback might not be provided.",
                         late: "February 16 - 18 (10% deduction per day). After this date, submissions will not be accepted and will receive a 0%.",
                         weight: "5% of total grade", format: "Group submission",
                         description: "Now that the class has selected a master layout, your team will claim one of the proposed modules via the sign-up sheet (first-come, first-served). In this stage, you will move into VS Code to build a static version of that module and draft the logic that will eventually make it interactive. This is your first step in turning a drawing into a functional piece of software.",
