@@ -395,11 +395,11 @@
                         ],
 
                         resourceTitle: "Consult the following resources to guide you:",
-                        items: [                            
+                        items: [
                             { name: "How to Draw a Wireframe (Even if You Can’t Draw)", url: "https://www.nngroup.com/articles/draw-wireframe-even-if-you-cant-draw/" },
-                            { name: "Figma Wireframe Tutorial for Beginners", url: "https://youtu.be/iyrEStiTZh0?si=ck7jHUjsJxenqDtJ" }, 
-                            {name: "Vuetify components", url: "https://vuetifyjs.com/en/components/all/"}
-                            
+                            { name: "Figma Wireframe Tutorial for Beginners", url: "https://youtu.be/iyrEStiTZh0?si=ck7jHUjsJxenqDtJ" },
+                            { name: "Vuetify components", url: "https://vuetifyjs.com/en/components/all/" }
+
                         ],
 
                         submissionInstructions: {
@@ -438,62 +438,78 @@
                     {
                         title: "Stage 4: Module Mockup & Preliminary Logic",
                         releaseDate: "2026-02-05T08:00:00",
-                        due: "February 11 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
-                        grace: "February 12 - 15 by 11:59 PM, without penalty, but feedback might not be provided.",
-                        late: "February 16 - 18 (10% deduction per day). After February 18, submissions will not be accepted and will receive a 0% grade.",
+                        due: "February 25 by 11:59 PM. Submitting by this date ensures you receive detailed feedback from the professor.",
+                        grace: "February 26 - March 1st by 11:59 PM, without penalty, but feedback might not be provided.",
+                        late: "March 2 - 4 (10% deduction per day). After March 4, submissions will not be accepted and will receive a 0% grade.",
                         weight: "5% of total grade", format: "Group submission",
-                        description: "Now that the class has selected a master layout, your team will claim one of the proposed modules via the sign-up sheet (first-come, first-served). In this stage, you will move into VS Code to build a static version of that module and draft the logic that will eventually make it interactive. This is your first step in turning a drawing into a functional piece of software.",
+                        description: "Now that the your team has claimed a module type and defined a unique thematic focus via the sign-up sheet, you will move into VS Code to build an initial version of that module, drafting both the visual structure and the underlying logic.",
                         learningObjectives: [
-                            "Component Development: Translate a visual mockup into Vue.js and Vuetify syntax.",
-                            "Logic Architecture: Identify and define the variables, data types, and conditional logic needed for a specific feature.",
-                            "Technical Documentation: Use code comments to explain pseudo-code and intent."
+                            "Logic Architecture: Identify and define the JavaScript variables, data types, functions, and conditional logic needed for the different  features of your module.",
+                            "Component Development: Translate a visual mockup into Vuetify syntax.",
+                            "Technical Documentation: Use code comments to explain code and intent."
                         ],
                         Deliverables: [
                             {
-                                title: "Vue.js File (Static UI)",
+                                title: "index.html File",
                                 description: {
-                                    overview: "Build the visual structure of your chosen module.",
+                                    overview: "Draft the visual structure of your chosen module using Vuetify components. Include the following:",
                                     items: [
-                                        "Tooling: Use VS Code and the course Vue.js/Vuetify setup.",
-                                        "UI Elements: Use the appropriate Vuetify tags (e.g., v-card, v-list, v-img) to match the master layout design. At this stage, the UI can be static (it doesn't have to do anything yet, but it should look right).",
+                                        "Boilerplate code: Start with the boilerplate/starter HTML and Vuetify code.",
+                                        "Vuetify Elements: Use the appropriate Vuetify tags (e.g., v-card, v-list, v-img) to match the module layout and components. At this stage, the user interface can be based on a set of variables rather than a list of objects. It should also include some initial interactive elements (e.g., open/close toggles).",
+                                        "Comments: Use comments to write out your coding plan/steps and explain code intent. Example: <!--  This card will become multiple cards later, by using v-for -->" 
                                     ]
                                 }
                             },
                             {
-                                title: "Preliminary Logic (The Script)",
+                                title: "app.js File",
                                 description: {
-                                    overview: "Inside your <script> block, prepare the 'brain' of your module:",
+                                    overview: "Draft the underlying logic of your module using JavaScript. Include the following:",
                                     items: [
-                                        "Variables & Data Types: Initialize the variables your module will need. Use appropriate types: Strings for text, Numbers for counters, Booleans for toggles, and Arrays for lists of items.",
-                                        "Logic Comments (Pseudo-code): Use // comments to write out your plan. Example: // If the user clicks the 'Provocation' button, the variable 'showCritique' should change to true.",
-                                        "Bridge: Ensure your variable names are clear and reflect the inquiry theme of the project."
+                                        "Boilerplate code: Start with the boilerplate/starter app.js code.",
+                                        "JavaScript elements: Identify and define the variables, data types, functions, and conditional logic needed for the different features of your module.",
+                                        "Comments: Use comments to write out your coding plan/steps and explain code intent. Example: // If the user clicks the card button, the variable 'showCard' should change to true.",
                                     ]
                                 }
                             },
                         ],
+
+                        resourceTitle: "Consult the following resources to guide you:",
+                        items: [
+                            { name: "Vuetify components", url: "https://vuetifyjs.com/en/components/all/" },
+                            { name: "ARTSSCI 3C03 Labs", url: "https://artssci.github.io/labs/" },
+                            { name: "Zip files and folders on Mac", url: "https://support.apple.com/en-ca/guide/mac-help/mchlp2528/mac" },
+                            { name: "Zip files on Windows", url: "https://support.microsoft.com/en-us/windows/zip-and-unzip-files-8d28fa72-f2f9-712f-67df-f80cf89fd4e5" }
+                        ],
+
+
                         submissionInstructions: {
-                            overview: "One member of the team must submit the following to the Avenue to Learn Dropbox:",
+                            overview: "One member of the team submit the following to the A2L dropbox 'Module Mockup & Preliminary Logic':",
                             items: [
-                                "The .vue File: Your component file (e.g., ReflectionModule.vue).",
-                                "A Screenshot: A capture of how the component renders in the browser to ensure the layout is appearing as intended."
+                                "A zipped folder with the app.js and index.html files."                                
                             ]
                         },
                         stageRubric: [
                             {
-                                criterion: "Vuetify Implementation",
-                                excellent: "UI is built cleanly using correct Vuetify syntax; accurately reflects the chosen module from the master layout.",
+                                criterion: "Thematic Focus",
+                                excellent: "Module addresses a distinct, specific sub-topic of maritime commerce/migration; content is specialized and avoids redundancy with other teams.",
                                 satisfactory: "UI is functional and uses Vuetify, though some styling or alignment may be off.",
                                 needsImprovement: "UI is incomplete or fails to use the required Vuetify components."
                             },
                             {
-                                criterion: "Logic Setup (Script)",
-                                excellent: "Variables are correctly typed (String, Array, etc.); logical plan is clear and ambitious.",
+                                criterion: "Visual Structure",
+                                excellent: "UI is built using correct Vuetify syntax (e.g., v-card, v-btn); layout accurately reflects the chosen module design.",
+                                satisfactory: "UI is functional and uses Vuetify, though some styling or alignment may be off.",
+                                needsImprovement: "UI is incomplete or fails to use the required Vuetify components."
+                            },
+                            {
+                                criterion: "Underlying Logic",
+                                excellent: "Variables, data types, functions, and conditional logic needed for the module's features are clearly identified and defined.",
                                 satisfactory: "Variables are present and mostly correct; logical plan is basic but functional.",
                                 needsImprovement: "Script is empty or variables are used incorrectly for the intended task."
                             },
                             {
-                                criterion: "Comments & Intent",
-                                excellent: "Professional use of comments to explain pseudo-code; clear roadmap for how the code will work.",
+                                criterion: "Comments & Code Intent",
+                                excellent: "Comments in index.html and app.js provide a clear technical coding roadmap and steps, and explain code intent.",
                                 satisfactory: "Comments provide a general idea of what the code is meant to do.",
                                 needsImprovement: "No comments or explanation of how the module's logic will function."
                             }
