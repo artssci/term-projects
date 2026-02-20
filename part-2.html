@@ -25,26 +25,28 @@
             <v-main class="my-custom-gradient">
                 <v-container>
                     <v-row justify="center">
-                        <v-col cols="10" >
+                        <v-col cols="10">
 
 
-                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white text-center" v-html="projectTitle"></h1>
+                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white text-center"
+                                v-html="projectTitle"></h1>
                             <v-sheet class="text-subtitle-1 text-black mb-8 bg-white pa-5 rounded font-weight-bold">
-                                <p >
+                                <p>
                                     {{
                                     projectDescription }}</p>
                             </v-sheet>
 
                             <v-card variant="elevated" color="#fd6c6c" class="mb-10 pa-4 ">
-                                <v-card-title class="text-uppercase font-weight-black" style="font-size: 1.25rem;" >
+                                <v-card-title class="text-uppercase font-weight-black" style="font-size: 1.25rem;">
                                     Overall Learning Outcomes
                                 </v-card-title>
-                                <v-list bg-color="transparent" density="compact" >
+                                <v-list bg-color="transparent" density="compact">
                                     <v-list-item v-for="(outcome, i) in outcomes" :key="i">
                                         <template v-slot:prepend>
                                             <v-icon icon="mdi-target" class="mr-"></v-icon>
                                         </template>
-                                        <v-list-item-title class="text-wrap font-weight-bold">{{ outcome }}</v-list-item-title>
+                                        <v-list-item-title class="text-wrap font-weight-bold">{{ outcome
+                                            }}</v-list-item-title>
                                     </v-list-item>
                                 </v-list>
                             </v-card>
@@ -202,13 +204,13 @@
                 // --- UPDATED DATA SECTION FOR PART 2 ---
                 const projectTitle = ref("Term Project Part 2 <br> Building the Collective App <br> (30% Total)");
 
-                const projectDescription = ref("In this final phase, teams will move from mockups to implementation. Working in pairs, you will build one functional module of the app concept selected in Part 1. Using JavaScript and Vuetify, you will apply coding fundamentals to create a 'provocation'—a digital tool that makes users think critically about the investigated real-world issue. Finally, all modules will be integrated into a single, collective application.");
+                const projectDescription = ref("In this next phase, teams will move from mockups to implementation. Working with your team, you will build one functional module of the app concept selected in Part 1. Using JavaScript and Vuetify, you will apply coding fundamentals to make users think critically about the investigated real-world issue. This stage also includes a usability and equity audit, and a final presentation.");
 
                 const outcomes = ref([
                     "Implement interactive logic using JavaScript variables, arrays, and functions.",
-                    "Develop functional UI components using the Vuetify framework.",
-                    "Collaborate on a shared codebase to integrate modular components into a master app.",
-                    "Perform an Equity Audit to critically evaluate the social impact of the digital provocation."
+                    "Develop functional user interface components using the Vuetify framework.",
+                    "Collaborate on a shared codebase to integrate modular components into a main app.",
+                    "Perform a usability and equity audit to critically evaluate the social impact of the digital provocation."
                 ]);
 
                 const stages = ref([
@@ -219,123 +221,172 @@
                         grace: "March 5 - 8 by 11:59 PM (No penalty, but feedback may be limited).",
                         late: "March 9 - 11 (10% deduction per day). After March 11, submissions receive 0%.",
                         weight: "10% of total grade",
-                        format: "Pair submission",
-                        description: "In this stage, you will move beyond placeholders. Using the logic fundamentals covered in class, you will make your module interactive. Your code should reflect the 'provocation' described in your initial proposal.",
+                        format: "Team submission",
+                        description: `In this stage, you will transform your mockup and preliminary logic into a functional, interactive module. Using the logic fundamentals covered in workshops and labs, you will move beyond placeholders to create a working user experience. Additionally, you will research your sub-theme more deeply to integrate specific content—such as data, facts, statistics, or commentary—that grounds your digital provocation in real-world evidence.`,
                         learningObjectives: [
                             "Logic Application: Use variables, arrays, and functions to create a dynamic user experience.",
                             "Algorithmic Thinking: Implement conditional logic (if/else) and operators to control app behavior.",
-                            "Thematic Cohesion: Ensure the code's functionality serves the specific provocation of the app."
+                            "Thematic Cohesion: Ensure the code's functionality serves the specific sub-theme selected."
                         ],
                         Deliverables: [
                             {
-                                title: "Functional Module (HTML/JS)",
+                                title: "Functional Module (HTML & JS Files)",
                                 description: {
                                     overview: "A working version of your specific module featuring:",
                                     items: [
-                                        "Data Structures: Use arrays or objects to store the content your module displays.",
-                                        "Interactivity: At least two distinct functions that trigger UI changes (e.g., filtering data, randomized outcomes, or conditional alerts).",
-                                        "Vuetify Polish: Clean implementation of the components identified in Stage 4."
+                                        "Research-Informed Content: Integration of specific facts, statistics, routes, or commentary relevant to your sub-theme.",
+                                        "Data-Driven Logic: Use variables, arrays, and functions to store research-informed content (facts, stats, or routes) and trigger interactive user interface changes",
+                                        "Refined User Interface: Fully implement and polish the components from previous assignment, ensuring a functional and responsive user interface.",
+                                        "Documentation & Intent: Use code comments to explain logic intent, identify bugs, and note areas requiring future research or technical help."
                                     ]
                                 }
                             }
                         ],
                         items: [
-                            { name: "JavaScript Logic & Conditional Reference", url: "https://artssci.github.io/labs/" },
-                            { name: "Vuetify API Explorer", url: "https://vuetifyjs.com/en/components/all/" }
+                            { name: "Coding Workshop Slides", url: "" },
+                            { name: "Course Labs", url: "https://artssci.github.io/labs/" },
+                            { name: "JavaScript Documentation", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+                            { name: "Vuetify Components", url: "https://vuetifyjs.com/en/components/all/" }
                         ],
                         submissionInstructions: {
-                            overview: "Submit a zipped folder to the 'Module Logic Implementation' dropbox containing:",
-                            items: ["index.html", "app.js", "Any local assets (images/JSON)."]
+                            overview: "One member of the team must submit the following to the 'Module Logic Implementation' Dropbox on Avenue to Learn:",
+                            items: [
+                                "A zipped folder containing index.html, app.js, and any external assets (e.g., images)."
+                            ]
                         },
                         stageRubric: [
                             {
-                                criterion: "Coding Logic (5%)",
-                                excellent: "Effectively employs variables, arrays, and functions; logic is error-free and creates a sophisticated interaction.",
-                                satisfactory: "Code is functional but may have minor redundancies or simple logic flows.",
-                                needsImprovement: "Code contains significant errors or fails to implement core interactive elements."
+                                criterion: "Data-Driven Logic (2.5%)",
+                                excellent: "Use of data structures and functions to support the integration of research content.",
+                                satisfactory: "Logic is functional but simple; data is present but may be disorganized or rely on basic variables.",
+                                needsImprovement: "Code fails to execute properly or lacks meaningful research data/content."
                             },
                             {
-                                criterion: "Thematic Provocation (5%)",
-                                excellent: "The interactivity directly supports the 'provocation' goal, forcing the user to engage with the theme critically.",
-                                satisfactory: "The module is functional but the connection to the theme feels generic.",
-                                needsImprovement: "The module does not align with the intended provocation."
+                                criterion: "Vuetify Implementation (2.5%)",
+                                excellent: "User interface components are polished, fully functional, and aligned with the intended design.",
+                                satisfactory: "UI is functional and uses Vuetify correctly, though minor styling or alignment issues persist.",
+                                needsImprovement: "UI is incomplete, broken, or does not utilize Vuetify components as planned."
+                            },
+                            {
+                                criterion: "Thematic Provocation (2.5%)",
+                                excellent: "The interactivity successfully engages the user critically with the sub-theme.'",
+                                satisfactory: "The module works, but the connection between the interaction and the critical theme feels generic.",
+                                needsImprovement: "The module functions as a utility without a clear critical or provocative edge."
+                            },
+                            {
+                                criterion: "Documentation & Comments (2.5%)",
+                                excellent: "Comments clearly explain code intent, logic flow, and identify areas for future work or assistance.",
+                                satisfactory: "Comments are present but sparse; they describe what the code does but not necessarily the intent.",
+                                needsImprovement: "Little to no commenting; logic is difficult to follow for a collaborator."
                             }
                         ]
                     },
+
                     {
                         title: "Stage 6: Module Integration",
-                        releaseDate: "2026-03-05T08:00:00",
+                        releaseDate: "2026-03-12T08:00:00",
                         due: "March 18 by 11:59 PM.",
-                        grace: "N/A - Integration requires synchronous collaboration.",
-                        late: "Late submissions disrupt the collective app and may not be accepted.",
+                        grace: "March 19 - 22 by 11:59 PM (No penalty, but feedback may be limited).",
+                        late: "March 23 - 25 (10% deduction per day). After March 25, submissions receive 0%.",
                         weight: "10% of total grade",
-                        format: "Collective/Pair submission",
-                        description: "The class will now merge individual modules into the master template. You must ensure your code is 'clean' enough to live alongside your classmates' work without breaking the overall application.",
+                        format: "Team submission",
+                        description: `You team will implement shared layout components (e.g., app bar, navigation drawer, etc) in your module, using the winning mockup as a guide. Additionaly, this stage requires finalizing any missing aspects left from Stage 5, completing all content/data entry, and ensuring your code is clean enough to coexist in a shared environment without causing errors.`,
                         learningObjectives: [
-                            "Collaborative Coding: Resolve naming conflicts and data pathing issues within a shared environment.",
-                            "UI Consistency: Adapt individual styles to match the class-voted master layout.",
-                            "System Thinking: Understand how modular code contributes to a larger software ecosystem."
+                            "Collaborative Systems: Successfully integrate implement shared user interface components (App Bar, Navigation Drawer).",
+                            "Technical Refinement: Finalize all logical operations and research data for a 'production-ready' state."
                         ],
                         Deliverables: [
                             {
-                                title: "Integrated Module",
+                                title: "Integration-Ready Module (HTML & JS Files)",
                                 description: {
-                                    overview: "Your module successfully running within the shared master index.html and app.js environment.",
+                                    overview: "A fully functional module living inside the class-voted layout:",
                                     items: [
-                                        "Conflict Resolution: Variables and functions are uniquely scoped to avoid 'breaking' other modules.",
-                                        "Shared Navigation: Module is accessible via the main app's navigation system."
+                                        "Shared Layout Implementation: Integration of the winning App Bar and Navigation Drawer components.",
+                                        "Finalized Content & Logic: 100% completion of all research data, stats, and logical interactive features."
                                     ]
                                 }
                             }
                         ],
                         stageRubric: [
                             {
-                                criterion: "Compatibility & Technical Cleanliness (5%)",
-                                excellent: "Module integrates seamlessly; code is well-organized and follows the naming conventions of the master template.",
-                                satisfactory: "Module works but required significant adjustment from peers/instructor to fit.",
-                                needsImprovement: "Module code causes errors in the shared environment."
+                                criterion: "Shared Layout Implementation (2.5%)",
+                                excellent: "App bar and navigation drawer are implemented flawlessly, accurately following the winning design's structure and aesthetic.",
+                                satisfactory: "Layout components are present and functional, but may have minor styling or placement inconsistencies.",
+                                needsImprovement: "Layout components are missing, broken, or do not follow the winning mockup guidelines."
                             },
                             {
-                                criterion: "UI Alignment (5%)",
-                                excellent: "Visuals perfectly match the master layout's spacing and color palette.",
-                                satisfactory: "Visuals are mostly aligned but show minor inconsistencies in component usage.",
-                                needsImprovement: "Module looks out of place or ignores the master template guidelines."
+                                criterion: "Logic & Content Completion (2.5%)",
+                                excellent: "All 'future aspects' from Stage 5 are resolved; interactivity is sophisticated and 100% of data/research content is present.",
+                                satisfactory: "Most logic is finalized, but minor placeholders remain or some interactive features are glitchy.",
+                                needsImprovement: "Significant logic is missing or the module contains incomplete research/content."
+                            },
+                            {
+                                criterion: "Technical Cleanliness (2.5%)",
+                                excellent: "Code is modular and 'clean'; variables and functions are scoped/named uniquely to ensure zero conflicts with other modules.",
+                                satisfactory: "Code is functional but lacks clear naming conventions, potentially causing minor issues in a shared environment.",
+                                needsImprovement: "Code structure is messy or uses global names that will break the collective application."
+                            },
+                            {
+                                criterion: "Thematic Cohesion (2.5%)",
+                                excellent: "The final module presents a seamless, professional, and powerful provocation that is deeply integrated with the sub-theme.",
+                                satisfactory: "The module is functional and themed, but the provocation feels less impactful due to minor technical or content gaps.",
+                                needsImprovement: "The module does not effectively communicate its sub-theme or intended provocation."
                             }
                         ]
                     },
+
                     {
                         title: "Stage 7: Usability & Equity Audit",
                         releaseDate: "2026-03-19T08:00:00",
                         due: "March 25 by 11:59 PM.",
-                        grace: "March 26 by 11:59 PM.",
-                        late: "10% deduction per day.",
+                        grace: "March 26 - 29 by 11:59 PM (No penalty, but feedback may be limited).",
+                        late: "March 30 - April 1 (10% deduction per day). After April 1, submissions receive 0%.",
                         weight: "5% of total grade",
-                        format: "Pair submission",
-                        description: "Before the final launch, you will conduct an audit of the full app. This is a critical check to ensure the 'provocation' isn't just technically sound, but ethically grounded and accessible.",
+                        format: "Team submission",
+                        description: `Before the final launch, you will conduct a multi-layered audit of your module. You will test your module with individuals outside of the class to observe how they interact with your provocation and whether your sub-theme is clearly understood. Additionally, you will perform a technical accessibility check—ensuring clear text contrast, proper ARIA labels, and logical heading structures—to ensure your tool is inclusive and ethically grounded.`,
                         learningObjectives: [
-                            "Critical Evaluation: Apply 'Critical Coding Theory' to a finished digital product.",
-                            "Accessibility Testing: Identify barriers to user engagement (UX).",
-                            "Reflective Practice: Acknowledge the limitations of the digital tool in addressing the real-world issue."
+                            "User Testing: Observe and analyze how external users perceive and navigate the digital provocation.",
+                            "Accessibility Implementation: Apply Web Content Accessibility Guidelines (WCAG) such as contrast and ARIA labels.",
+                            "Critical Reflection: Use 'Critical Coding Theory' to evaluate the social impact and equity of the tool."
                         ],
                         Deliverables: [
                             {
-                                title: "Audit Report (Approx. 500 words)",
+                                title: "Audit & Testing Report (Approx. 500 words)",
                                 description: {
-                                    overview: "A critique of the integrated app including:",
+                                    overview: "A comprehensive critique of your module including:",
                                     items: [
-                                        "Usability: One technical bug or UX friction point discovered during testing.",
-                                        "Equity: Does the app unintentionally reinforce the issue it tries to provoke? (Reflect on readings).",
-                                        "Revision: One specific change that would make the tool more inclusive."
+                                        "User Testing Insights: Summary of feedback from external testers regarding the clarity of your sub-theme.",
+                                        "Accessibility Check: A list of specific technical adjustments made (e.g., color contrast fixes, added aria-labels).",
+                                        "Equity Analysis: Reflection on whether the app avoids reinforcing biases while effectively provoking critical thought.",
+                                        "Future Revision: One specific design or code change to make the tool more inclusive."
                                     ]
                                 }
                             }
                         ],
                         stageRubric: [
                             {
-                                criterion: "Critical Reflection (5%)",
-                                excellent: "Provides a deep, theoretical critique of the app's impact and usability, citing course readings accurately.",
-                                satisfactory: "Identifies bugs and basic issues but lacks theoretical depth.",
-                                needsImprovement: "Report is superficial or ignores the equity component."
+                                criterion: "User Testing & Clarity (1.25%)",
+                                excellent: "Provides clear evidence of external testing with insightful observations on how users understood the sub-theme.",
+                                satisfactory: "Testing was conducted, but observations on user understanding are general or superficial.",
+                                needsImprovement: "No evidence of external testing or feedback collection."
+                            },
+                            {
+                                criterion: "Technical Accessibility (1.25%)",
+                                excellent: "Module demonstrates high accessibility standards (proper contrast, aria-labels, and alt text) with no major barriers.",
+                                satisfactory: "Accessibility is considered, but some issues with contrast or labeling remain.",
+                                needsImprovement: "Module fails basic accessibility checks, making it difficult for some users to engage."
+                            },
+                            {
+                                criterion: "Critical Equity Analysis (1.25%)",
+                                excellent: "Deep theoretical critique of the module’s social impact, effectively connecting code choices to course readings.",
+                                satisfactory: "Identifies basic equity concerns but lacks a strong connection to critical theory/readings.",
+                                needsImprovement: "Equity analysis is missing or does not address potential biases."
+                            },
+                            {
+                                criterion: "Actionable Revisions (1.25%)",
+                                excellent: "Identifies a highly specific and effective technical or design change to improve future inclusivity.",
+                                satisfactory: "Identifies a general change, but it lacks specific technical detail.",
+                                needsImprovement: "No meaningful revision or improvement is proposed."
                             }
                         ]
                     },
@@ -344,33 +395,53 @@
                         releaseDate: "2026-03-26T08:00:00",
                         due: "April 2 (In-Class)",
                         grace: "N/A",
-                        late: "N/A",
+                        late: "Failure to present in person will result in 0%.",
                         weight: "5% of total grade",
                         format: "In-class presentation",
-                        description: "The grand finale. Each pair will demonstrate their module within the live collective app and reflect on the journey from theory to functional code.",
+                        description: `Each team will demonstrate their functional module within the live collective app and reflect on the journey from initial theory to functional code. Each presentation will be followed by a short Q&A session. Please note that external guests may be invited to observe and engage with your work during this session.`,
                         learningObjectives: [
-                            "Technical Communication: Explain complex logic in accessible terms.",
-                            "Final Synthesis: Connect the final functional product back to the Stage 1 inquiry."
+                            "Technical Communication: Explain complex coding logic and design choices in accessible terms for a diverse audience.",
+                            "Final Synthesis: Connect the functional digital product back to the critical inquiry established in Stage 1.",
+                            "Professional Engagement: Respond effectively to peer and guest inquiries during a live Q&A."
                         ],
                         Deliverables: [
                             {
-                                title: "Live Demo",
+                                title: "Live Demo & Q&A",
                                 description: {
-                                    overview: "A 3-minute walkthrough of your module highlighting:",
+                                    overview: "A 3-minute walkthrough of your module and participation in a 2-minute Q&A:",
                                     items: [
-                                        "Logic Highlight: Show one specific code-driven interaction.",
-                                        "Thematic Success: Explain why this interaction provokes reflection.",
-                                        "Lessons Learned: One technical or theoretical challenge overcome."
+                                        "Logic Highlight: Demonstrate a specific code-driven interaction in the live app.",
+                                        "Thematic Success: Explain how this interaction serves as a 'provocation' for the user.",
+                                        "Lessons Learned: Share one major technical or theoretical challenge overcome during the build.",
+                                        "Q&A Session: Answer questions regarding your data, logic, or design choices."
                                     ]
                                 }
                             }
                         ],
                         stageRubric: [
                             {
-                                criterion: "Presentation & Demo (5%)",
-                                excellent: "Demo is smooth; speaker clearly connects coding choices to the theoretical provocation.",
-                                satisfactory: "Demo is functional; explanation is clear but brief.",
-                                needsImprovement: "Presentation is disorganized or unable to explain the module's logic."
+                                criterion: "Live Demonstration (1.25%)",
+                                excellent: "The demo is smooth and professional; the team navigates the module flawlessly while highlighting key logic.",
+                                satisfactory: "The demo is functional, though navigation may be slightly unpolished or rushed.",
+                                needsImprovement: "The demo fails to function or the team is unable to show the module's interactivity."
+                            },
+                            {
+                                criterion: "Thematic Synthesis (1.25%)",
+                                excellent: "Expertly connects the functional code back to the original Stage 1 provocation and sub-theme.",
+                                satisfactory: "Discusses the theme, but the connection between the code and the theoretical inquiry is loose.",
+                                needsImprovement: "Fails to explain the social or theoretical purpose of the module."
+                            },
+                            {
+                                criterion: "Technical Communication (1.25%)",
+                                excellent: "Clearly explains 'Lessons Learned' and logic highlights using terminology accessible to both coders and guests.",
+                                satisfactory: "Explains technical aspects but uses overly dense jargon or fails to explain the 'why' behind the logic.",
+                                needsImprovement: "Unable to explain how the code works or what challenges were encountered."
+                            },
+                            {
+                                criterion: "Q&A & Engagement (1.25%)",
+                                excellent: "Responds to questions with depth, confidence, and critical insight, demonstrating full ownership of the project.",
+                                satisfactory: "Provides basic answers to questions but lacks detail or reflective depth.",
+                                needsImprovement: "Unable to answer basic questions about the module or logic."
                             }
                         ]
                     }
