@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Term Project Guidelines</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .my-custom-gradient {
+        /* A sleek "Dark Void" gradient: Black to a very deep blue/purple */
+        background: linear-gradient(180deg, #7171ce 0%, #fd6c6c 100%) !important;
+        min-height: 100vh;
+
+    }
+</style>
+
+<body>
+    <div id="app">
+        <v-app>
+            <v-main class="my-custom-gradient">
+                <v-container>
+                    <v-row justify="center">
+                        <v-col cols="10" >
+
+
+                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white text-center" v-html="projectTitle"></h1>
+                            <v-sheet class="text-subtitle-1 text-black mb-8 bg-white pa-5 rounded font-weight-bold">
+                                <p >
+                                    {{
+                                    projectDescription }}</p>
+                            </v-sheet>
+
+                            <v-card variant="elevated" color="#fd6c6c" class="mb-10 pa-4 ">
+                                <v-card-title class="text-uppercase font-weight-black" style="font-size: 1.25rem;" >
+                                    Overall Learning Outcomes
+                                </v-card-title>
+                                <v-list bg-color="transparent" density="compact" >
+                                    <v-list-item v-for="(outcome, i) in outcomes" :key="i">
+                                        <template v-slot:prepend>
+                                            <v-icon icon="mdi-target" class="mr-"></v-icon>
+                                        </template>
+                                        <v-list-item-title class="text-wrap font-weight-bold">{{ outcome }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-card>
+
+                            <v-expansion-panels v-model="openPanel" variant="popout" multiple>
+                                <v-expansion-panel v-for="(stage, index) in stages" :key="index">
+                                    <v-expansion-panel-title class="font-weight-bold text-white" color="#7171ce">
+                                        {{ stage.title }} ({{ stage.weight }})
+                                    </v-expansion-panel-title>
+
+                                    <v-expansion-panel-text class="bg-grey-lighten-5 pa-4">
+                                        <div class="d-flex flex-column ga-2 mb-4 ">
+                                            <div class="mr-2 mb-2"><b>Due Date:</b> {{stage.due}} </div>
+                                            <div class="mr-2 mb-2"><b>Grace Period:</b> {{ stage.grace }}</div>
+                                            <div class="mr-2 mb-2"><b>Late Submission:</b> {{ stage.late}} </div>
+                                            <div v-if="stage.format" class=""> <b>Submission Type:</b> {{
+                                                stage.format }}</div>
+                                        </div>
+
+                                        <v-divider thickness="2" class="my-4" color="primary">
+                                        </v-divider>
+
+                                        <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
+                                        <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">
+
+                                            <p class="text-body-1 text-white font-weight-bold">{{ stage.description }}
+                                            </p>
+                                        </v-sheet>
+                                        <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+
+                                        <div v-if="stage.learningObjectives">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Learning Objectives</h3>
+                                            <v-list density="compact" bg-color="transparent" class="mb-1">
+                                                <v-list-item v-for="obj in stage.learningObjectives" :key="obj"
+                                                    prepend-icon="mdi-circle-medium">
+                                                    <v-list-item-title class="text-wrap text-body-2">{{ obj
+                                                        }}</v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.Deliverables">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Deliverables</h3>
+                                            <div v-for="dev in stage.Deliverables" :key="dev.title" class="mb-4">
+                                                <div class="text-subtitle-2 font-weight-bold text-secondary">{{
+                                                    dev.title }}</div>
+                                                <p class="text-body-2 mb-2" v-if="dev.description">{{
+                                                    dev.description.overview }}</p>
+                                                <v-list v-if="dev.description" density="compact" bg-color="transparent">
+                                                    <v-list-item v-for="bullet in dev.description.items" :key="bullet"
+                                                        prepend-icon="mdi-circle-medium" color="success">
+                                                        <v-list-item-title class="text-wrap text-body-2">{{ bullet
+                                                            }}</v-list-item-title>
+                                                    </v-list-item>
+                                                </v-list>
+                                            </div>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.items">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Resources and Examples
+                                            </h3>
+                                            <p class="text-body-2 mb-2">{{ stage.resourceTitle || `Consult the following
+                                                to guide your work:` }}</p>
+                                            <v-list density="compact" bg-color="transparent" class="mb-4">
+                                                <v-list-item v-for="(item, lIdx) in stage.items" :key="lIdx"
+                                                    :href="item.url" target="_blank" prepend-icon="mdi-link-variant"
+                                                    class="text-primary">
+                                                    <v-list-item-title
+                                                        class="text-wrap text-body-2 text-decoration-underline">
+                                                        {{ item.name }}
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                            <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+                                        </div>
+
+                                        <div v-if="stage.submissionInstructions">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-2">Submission</h3>
+                                            <p class="text-body-2 mb-2">{{ stage.submissionInstructions.overview }}</p>
+                                            <v-list density="compact" bg-color="transparent" class="mb-6">
+                                                <v-list-item v-for="sub in stage.submissionInstructions.items"
+                                                    :key="sub" prepend-icon="mdi-upload">
+                                                    <v-list-item-title class="text-wrap text-body-2">{{ sub
+                                                        }}</v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </div>
+
+                                        <v-divider thickness="2" class="my-4" color="primary"></v-divider>
+
+                                        <div v-if="stage.stageRubric">
+                                            <h3 class="text-subtitle-1 font-weight-bold mb-4">Assessment Rubric</h3>
+                                            <v-table density="comfortable" class="border rounded mb-4 bg-transparent">
+                                                <tbody>
+                                                    <template v-for="(rubricRow, rIdx) in stage.stageRubric"
+                                                        :key="rIdx">
+                                                        <tr>
+                                                            <td class="font-weight-bold text-body-2 pa-2">{{
+                                                                rubricRow?.criterion }}</td>
+                                                            <td class="text-caption pa-2">{{ rubricRow?.excellent }}
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </v-table>
+                                        </div>
+                                    </v-expansion-panel-text>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.js"></script>
+
+    <script>
+        const { createApp, ref } = Vue;
+        const { createVuetify } = Vuetify;
+        const vuetify = createVuetify({
+            theme: {
+                defaultTheme: 'myCustomTheme',
+                themes: {
+                    myCustomTheme: {
+                        dark: false, // We'll keep it light-coded but use deep colors
+                        colors: {
+                            primary: '#000000',    // Matches the top of your gradient
+                            secondary: '#7171ce',  // Matches the bottom of your gradient
+                            accent: '#FFD700',     // A "fun" gold for buttons/icons
+                            info: '#00E5FF',       // Cyan for highlights
+                            success: '#00C853',
+                            warning: '#FFAB00',
+                            error: '#FF5252',
+                            surface: '#fd6c6c',    // Deep navy cards (looks great on gradients)
+                            'on-surface': '#000000', // Ensures text on cards is white
+                            background: '#ffff0080', // Let the CSS gradient show through
+                        },
+                    },
+                },
+            },
+        });
+
+
+
+        createApp({
+            setup() {
+
+
+                // --- UPDATED DATA SECTION FOR PART 2 ---
+                const projectTitle = ref("Term Project Part 2 <br> Building the Collective App <br> (30% Total)");
+
+                const projectDescription = ref("In this final phase, teams will move from mockups to implementation. Working in pairs, you will build one functional module of the app concept selected in Part 1. Using JavaScript and Vuetify, you will apply coding fundamentals to create a 'provocation'—a digital tool that makes users think critically about the investigated real-world issue. Finally, all modules will be integrated into a single, collective application.");
+
+                const outcomes = ref([
+                    "Implement interactive logic using JavaScript variables, arrays, and functions.",
+                    "Develop functional UI components using the Vuetify framework.",
+                    "Collaborate on a shared codebase to integrate modular components into a master app.",
+                    "Perform an Equity Audit to critically evaluate the social impact of the digital provocation."
+                ]);
+
+                const stages = ref([
+                    {
+                        title: "Stage 5: Module Logic Implementation",
+                        releaseDate: "2026-02-25T08:00:00",
+                        due: "March 4 by 11:59 PM.",
+                        grace: "March 5 - 8 by 11:59 PM (No penalty, but feedback may be limited).",
+                        late: "March 9 - 11 (10% deduction per day). After March 11, submissions receive 0%.",
+                        weight: "10% of total grade",
+                        format: "Pair submission",
+                        description: "In this stage, you will move beyond placeholders. Using the logic fundamentals covered in class, you will make your module interactive. Your code should reflect the 'provocation' described in your initial proposal.",
+                        learningObjectives: [
+                            "Logic Application: Use variables, arrays, and functions to create a dynamic user experience.",
+                            "Algorithmic Thinking: Implement conditional logic (if/else) and operators to control app behavior.",
+                            "Thematic Cohesion: Ensure the code's functionality serves the specific provocation of the app."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Functional Module (HTML/JS)",
+                                description: {
+                                    overview: "A working version of your specific module featuring:",
+                                    items: [
+                                        "Data Structures: Use arrays or objects to store the content your module displays.",
+                                        "Interactivity: At least two distinct functions that trigger UI changes (e.g., filtering data, randomized outcomes, or conditional alerts).",
+                                        "Vuetify Polish: Clean implementation of the components identified in Stage 4."
+                                    ]
+                                }
+                            }
+                        ],
+                        items: [
+                            { name: "JavaScript Logic & Conditional Reference", url: "https://artssci.github.io/labs/" },
+                            { name: "Vuetify API Explorer", url: "https://vuetifyjs.com/en/components/all/" }
+                        ],
+                        submissionInstructions: {
+                            overview: "Submit a zipped folder to the 'Module Logic Implementation' dropbox containing:",
+                            items: ["index.html", "app.js", "Any local assets (images/JSON)."]
+                        },
+                        stageRubric: [
+                            {
+                                criterion: "Coding Logic (5%)",
+                                excellent: "Effectively employs variables, arrays, and functions; logic is error-free and creates a sophisticated interaction.",
+                                satisfactory: "Code is functional but may have minor redundancies or simple logic flows.",
+                                needsImprovement: "Code contains significant errors or fails to implement core interactive elements."
+                            },
+                            {
+                                criterion: "Thematic Provocation (5%)",
+                                excellent: "The interactivity directly supports the 'provocation' goal, forcing the user to engage with the theme critically.",
+                                satisfactory: "The module is functional but the connection to the theme feels generic.",
+                                needsImprovement: "The module does not align with the intended provocation."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 6: Module Integration",
+                        releaseDate: "2026-03-05T08:00:00",
+                        due: "March 18 by 11:59 PM.",
+                        grace: "N/A - Integration requires synchronous collaboration.",
+                        late: "Late submissions disrupt the collective app and may not be accepted.",
+                        weight: "10% of total grade",
+                        format: "Collective/Pair submission",
+                        description: "The class will now merge individual modules into the master template. You must ensure your code is 'clean' enough to live alongside your classmates' work without breaking the overall application.",
+                        learningObjectives: [
+                            "Collaborative Coding: Resolve naming conflicts and data pathing issues within a shared environment.",
+                            "UI Consistency: Adapt individual styles to match the class-voted master layout.",
+                            "System Thinking: Understand how modular code contributes to a larger software ecosystem."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Integrated Module",
+                                description: {
+                                    overview: "Your module successfully running within the shared master index.html and app.js environment.",
+                                    items: [
+                                        "Conflict Resolution: Variables and functions are uniquely scoped to avoid 'breaking' other modules.",
+                                        "Shared Navigation: Module is accessible via the main app's navigation system."
+                                    ]
+                                }
+                            }
+                        ],
+                        stageRubric: [
+                            {
+                                criterion: "Compatibility & Technical Cleanliness (5%)",
+                                excellent: "Module integrates seamlessly; code is well-organized and follows the naming conventions of the master template.",
+                                satisfactory: "Module works but required significant adjustment from peers/instructor to fit.",
+                                needsImprovement: "Module code causes errors in the shared environment."
+                            },
+                            {
+                                criterion: "UI Alignment (5%)",
+                                excellent: "Visuals perfectly match the master layout's spacing and color palette.",
+                                satisfactory: "Visuals are mostly aligned but show minor inconsistencies in component usage.",
+                                needsImprovement: "Module looks out of place or ignores the master template guidelines."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 7: Usability & Equity Audit",
+                        releaseDate: "2026-03-19T08:00:00",
+                        due: "March 25 by 11:59 PM.",
+                        grace: "March 26 by 11:59 PM.",
+                        late: "10% deduction per day.",
+                        weight: "5% of total grade",
+                        format: "Pair submission",
+                        description: "Before the final launch, you will conduct an audit of the full app. This is a critical check to ensure the 'provocation' isn't just technically sound, but ethically grounded and accessible.",
+                        learningObjectives: [
+                            "Critical Evaluation: Apply 'Critical Coding Theory' to a finished digital product.",
+                            "Accessibility Testing: Identify barriers to user engagement (UX).",
+                            "Reflective Practice: Acknowledge the limitations of the digital tool in addressing the real-world issue."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Audit Report (Approx. 500 words)",
+                                description: {
+                                    overview: "A critique of the integrated app including:",
+                                    items: [
+                                        "Usability: One technical bug or UX friction point discovered during testing.",
+                                        "Equity: Does the app unintentionally reinforce the issue it tries to provoke? (Reflect on readings).",
+                                        "Revision: One specific change that would make the tool more inclusive."
+                                    ]
+                                }
+                            }
+                        ],
+                        stageRubric: [
+                            {
+                                criterion: "Critical Reflection (5%)",
+                                excellent: "Provides a deep, theoretical critique of the app's impact and usability, citing course readings accurately.",
+                                satisfactory: "Identifies bugs and basic issues but lacks theoretical depth.",
+                                needsImprovement: "Report is superficial or ignores the equity component."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Stage 8: Final App Presentation",
+                        releaseDate: "2026-03-26T08:00:00",
+                        due: "April 2 (In-Class)",
+                        grace: "N/A",
+                        late: "N/A",
+                        weight: "5% of total grade",
+                        format: "In-class presentation",
+                        description: "The grand finale. Each pair will demonstrate their module within the live collective app and reflect on the journey from theory to functional code.",
+                        learningObjectives: [
+                            "Technical Communication: Explain complex logic in accessible terms.",
+                            "Final Synthesis: Connect the final functional product back to the Stage 1 inquiry."
+                        ],
+                        Deliverables: [
+                            {
+                                title: "Live Demo",
+                                description: {
+                                    overview: "A 3-minute walkthrough of your module highlighting:",
+                                    items: [
+                                        "Logic Highlight: Show one specific code-driven interaction.",
+                                        "Thematic Success: Explain why this interaction provokes reflection.",
+                                        "Lessons Learned: One technical or theoretical challenge overcome."
+                                    ]
+                                }
+                            }
+                        ],
+                        stageRubric: [
+                            {
+                                criterion: "Presentation & Demo (5%)",
+                                excellent: "Demo is smooth; speaker clearly connects coding choices to the theoretical provocation.",
+                                satisfactory: "Demo is functional; explanation is clear but brief.",
+                                needsImprovement: "Presentation is disorganized or unable to explain the module's logic."
+                            }
+                        ]
+                    }
+                ]);
+
+
+                // Initialize with a single value instead of an array
+                const getActiveIndex = () => {
+                    const now = new Date();
+
+                    // We want the HIGHEST index where the date has already passed
+                    // .findLastIndex is perfect for this
+                    const index = stages.value.findLastIndex(stage => {
+                        return now >= new Date(stage.releaseDate);
+                    });
+
+                    // If no stages have started yet, default to 0 or -1
+                    return index !== -1 ? index : 0;
+                };
+
+                // Use a single number ref
+                const openPanel = ref(getActiveIndex());
+
+
+
+                // We "return" the data so the HTML template can see it
+                return {
+                    projectTitle,
+                    projectDescription,
+                    outcomes,
+                    stages,
+                    openPanel,
+                    // dummy definitions to satisfy the compiler's scan
+                    rubricRow: null,
+                    item: null,
+                    row: null
+                }
+            }
+        })
+            .use(vuetify)
+            .mount('#app')
+    </script>
+</body>
+
+</html>

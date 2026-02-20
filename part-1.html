@@ -25,14 +25,14 @@
             <v-main class="my-custom-gradient">
                 <v-container>
                     <v-row justify="center">
-                        <v-col cols="12" md="10" lg="8">
+                        <v-col cols="10">
 
-                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white">{{ projectTitle }}</h1>
-                            <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded">{{
+                            <h1 class="text-h3 mt-5 mb-10 font-weight-bold text-white text-center" v-html="projectTitle"></h1>
+                            <p class="text-subtitle-1 text-grey-darken-5 mb-8 bg-white pa-5 rounded font-weight-bold">{{
                                 projectDescription }}</p>
 
-                            <v-card variant="elevated" color="secondary" class="mb-10 pa-4">
-                                <v-card-title class="text-uppercase text-caption font-weight-black">
+                            <v-card variant="elevated" color="secondary" class="mb-10 pa-4" >
+                                <v-card-title class="text-uppercase font-weight-black" style="font-size: 1.25rem;">
                                     Overall Learning Outcomes
                                 </v-card-title>
                                 <v-list bg-color="transparent" density="compact">
@@ -40,7 +40,7 @@
                                         <template v-slot:prepend>
                                             <v-icon icon="mdi-target" class="mr-"></v-icon>
                                         </template>
-                                        <v-list-item-title class="text-wrap">{{ outcome }}</v-list-item-title>
+                                        <v-list-item-title class="text-wrap font-weight-bold">{{ outcome }}</v-list-item-title>
                                     </v-list-item>
                                 </v-list>
                             </v-card>
@@ -196,7 +196,7 @@
 
 
                 // --- DATA SECTION (Same as your JS object) ---
-                const projectTitle = ref("Term Project Part 1 - Collective Inquiry & App Planning (30% Total)");
+                const projectTitle = ref("Term Project Part 1 <br> Collective Inquiry & App Planning <br> (30% Total)");
                 const projectDescription = ref("In this multi-stage project, we will work together as a class to investigate a real-world issue and reimagine it through a mobile-friendly web app. This project is not about building a solution, but rather creating a provocation (i.e., a digital tool that makes users think differently about the proposed real-world issue).")
                 const outcomes = ref([
                     "Analyze social issues through critical coding theory.",
@@ -490,25 +490,25 @@
                         },
                         stageRubric: [
                             {
-                                criterion: "Thematic Focus",
+                                criterion: "Thematic Focus (1.25%)",
                                 excellent: "Module addresses a distinct, specific sub-topic of maritime commerce/migration; content is specialized and avoids redundancy with other teams.",
                                 satisfactory: "UI is functional and uses Vuetify, though some styling or alignment may be off.",
                                 needsImprovement: "UI is incomplete or fails to use the required Vuetify components."
                             },
                             {
-                                criterion: "Visual Structure",
+                                criterion: "Visual Structure (1.25%)",
                                 excellent: "UI is built using correct Vuetify syntax (e.g., v-card, v-btn); layout accurately reflects the chosen module design.",
                                 satisfactory: "UI is functional and uses Vuetify, though some styling or alignment may be off.",
                                 needsImprovement: "UI is incomplete or fails to use the required Vuetify components."
                             },
                             {
-                                criterion: "Underlying Logic",
+                                criterion: "Underlying Logic (1.25%)",
                                 excellent: "Variables, data types, functions, and conditional logic needed for the module's features are clearly identified and defined.",
                                 satisfactory: "Variables are present and mostly correct; logical plan is basic but functional.",
                                 needsImprovement: "Script is empty or variables are used incorrectly for the intended task."
                             },
                             {
-                                criterion: "Comments & Code Intent",
+                                criterion: "Comments & Code Intent (1.25%)",
                                 excellent: "Comments in index.html and app.js provide a clear technical coding roadmap and steps, and explain code intent.",
                                 satisfactory: "Comments provide a general idea of what the code is meant to do.",
                                 needsImprovement: "No comments or explanation of how the module's logic will function."
