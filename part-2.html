@@ -17,6 +17,17 @@
         min-height: 100vh;
 
     }
+
+    /* Target the div with v-html specifically */
+    .text-body-1 ol,
+    .text-body-1 ul {
+        padding-left: 2rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .text-body-1 li {
+        margin-bottom: 0.5rem;
+    }
 </style>
 
 <body>
@@ -72,8 +83,9 @@
                                         <h3 class="text-subtitle-1 font-weight-bold mb-2">What You Need to Do</h3>
                                         <v-sheet elevation="2" rounded="lg" class="pa-4 mb-6 bg-surface">
 
-                                            <p class="text-body-1 text-white font-weight-bold">{{ stage.description }}
-                                            </p>
+                                            <div v-html="stage.description"
+                                                class="text-body-1 text-white font-weight-bold">
+                                            </div>
                                         </v-sheet>
                                         <v-divider thickness="2" class="my-4" color="primary"></v-divider>
 
@@ -374,12 +386,12 @@
                                 }
                             }
                         ],
-                         resourceTitle: "Consult the following resources to guide you:",
+                        resourceTitle: "Consult the following resources to guide you:",
                         items: [
-                        { name: "Usability Testing – The Complete Guide", url: "https://www.uxtweak.com/usability-testing/" },    
-                        { name: "Software Testing - Web Application Testing Checklist with Test Scenarios", url: "https://www.geeksforgeeks.org/software-testing/software-testing-web-application-testing-checklist-with-test-scenarios/" }
-                            
-                            
+                            { name: "Usability Testing – The Complete Guide", url: "https://www.uxtweak.com/usability-testing/" },
+                            { name: "Software Testing - Web Application Testing Checklist with Test Scenarios", url: "https://www.geeksforgeeks.org/software-testing/software-testing-web-application-testing-checklist-with-test-scenarios/" }
+
+
                         ],
 
                         submissionInstructions: {
@@ -417,56 +429,64 @@
                     },
                     {
                         title: "Stage 8: Final App Presentation",
-                        releaseDate: "2026-03-26T08:00:00",
+                        releaseDate: "2026-03-25T08:00:00",
                         due: "April 2 (In-Class)",
                         grace: "N/A",
                         late: "Failure to present in person will result in 0%.",
                         weight: "5% of total grade",
                         format: "In-class presentation",
-                        description: `Each team will demonstrate their functional module within the live collective app and reflect on the journey from initial theory to functional code. Each presentation will be followed by a short Q&A session. Please note that external guests may be invited to observe and engage with your work during this session.`,
+                        description: `In this final assignment, each team will demo their module and share their development journey in a 15 minute presentation. This is a chance to showcase your finished product and reflect on the evolution from initial theory to functional code.`,
                         learningObjectives: [
-                            "Technical Communication: Explain complex coding logic and design choices in accessible terms for a diverse audience.",
-                            "Final Synthesis: Connect the functional digital product back to the critical inquiry established in Stage 1.",
-                            "Professional Engagement: Respond effectively to peer and guest inquiries during a live Q&A."
+                            "Technical & Theoretical Synthesis: Articulate how your module's functional code and design choices advance its specific critical inquiry.",
+                            "Reflective Practice: Evaluate the development process to identify key technical hurdles and personal growth in moving from theory to code.",
+                            "Public Engagement: Facilitate interactive exploration of your digital tool and respond to critical inquiries during a live Q&A."
                         ],
                         Deliverables: [
                             {
                                 title: "Live Demo & Q&A",
                                 description: {
-                                    overview: "A 10-minute walkthrough of your module and participation in a 2-minute Q&A:",
+                                    overview: "A 10-minute presentation of your module and a 5-minute Q&A session. Throughout your presentation and Q&A, please invite the audience to actively play with your module on their own computers.",
                                     items: [
-                                        "Logic Highlight: Demonstrate a specific code-driven interaction in the live app.",
-                                        "Thematic Success: Explain how this interaction serves as a 'provocation' for the user.",
-                                        "Lessons Learned: Share one major technical or theoretical challenge overcome during the build.",
-                                        "Q&A Session: Answer questions regarding your data, logic, or design choices."
+                                        "Concept & Theory (3.5 mins approx.): Define your module’s sub-theme and the theoretical framework behind your approach.",
+                                        "Technical Walkthrough (3.5 mins approx.): Demonstrate the core functionality and show your module in action.",
+                                        "Reflective Journey (3 mins approx.): Reflect on the process, your biggest challenges, and key learnings (e.g., personal growth in moving from theory to code).",
+                                        "Q&A Session (5 mins approx.): The remaining time is reserved for questions and for you to encourage the audience to play with your module."
                                     ]
                                 }
                             }
                         ],
+
+                        submissionInstructions: {
+                            overview: "All members present together. There is no physical submission to A2L.",
+                            items: [
+
+                            ]
+                        },
+
                         stageRubric: [
                             {
-                                criterion: "Live Demonstration (1.25%)",
-                                excellent: "The demo is smooth and professional; the team navigates the module flawlessly while highlighting key logic.",
-                                satisfactory: "The demo is functional, though navigation may be slightly unpolished or rushed.",
-                                needsImprovement: "The demo fails to function or the team is unable to show the module's interactivity."
+                                criterion: "Concept & Technical Synthesis (1.25%)",
+                                excellent: "Articulates the sub-theme's theoretical framework and demonstrates how the functional code and design choices advance that critical inquiry.",
+                                satisfactory: "Demonstrates the module and mentions the theme, but the connection between the code's logic and the theoretical 'why' is loose or surface-level.",
+                                needsImprovement: "Fails to explain the social purpose of the module or provide a functional walkthrough of the interface."
                             },
                             {
-                                criterion: "Thematic Synthesis (1.25%)",
-                                excellent: "Expertly connects the functional code back to the original Stage 1 provocation and sub-theme.",
-                                satisfactory: "Discusses the theme, but the connection between the code and the theoretical inquiry is loose.",
-                                needsImprovement: "Fails to explain the social or theoretical purpose of the module."
+                                criterion: "Reflective Journey (1.25%)",
+                                excellent: "Provides deep insight into the development process, clearly identifying specific technical hurdles, individual and team lessons learned, and the evolution from theory to code.",
+                                satisfactory: "Describes the development process in general terms; identifies some challenges but lacks specific detail on individual vs. team growth.",
+                                needsImprovement: "Provides little to no reflection on the process; unable to articulate specific hurdles or what was learned during the build."
                             },
                             {
                                 criterion: "Technical Communication (1.25%)",
-                                excellent: "Clearly explains 'Lessons Learned' and logic highlights using terminology accessible to both coders and guests.",
-                                satisfactory: "Explains technical aspects but uses overly dense jargon or fails to explain the 'why' behind the logic.",
-                                needsImprovement: "Unable to explain how the code works or what challenges were encountered."
+                                excellent: "Explains complex coding logic and design decisions using clear, professional terminology accessible to both peers and external guests.",
+                                satisfactory: "Explains technical aspects but relies on dense jargon or fails to translate the logic into a clear narrative for the audience.",
+                                needsImprovement: "Unable to explain how the code works or describe the intent behind the module's interactive features."
                             },
                             {
-                                criterion: "Q&A & Engagement (1.25%)",
-                                excellent: "Responds to questions with depth, confidence, and critical insight, demonstrating full ownership of the project.",
-                                satisfactory: "Provides basic answers to questions but lacks detail or reflective depth.",
-                                needsImprovement: "Unable to answer basic questions about the module or logic."
+                                criterion: "Public Engagement & Q&A (1.25%)",
+                                excellent: "Effectively facilitates audience interaction with the module and responds to inquiries with confidence, depth, and critical ownership of the project.",
+                                satisfactory: "Invites interaction and provides basic answers to questions, but answers may lack reflective depth or specific technical/thematic detail.",
+                                needsImprovement: "Fails to encourage audience engagement or is unable to answer fundamental questions about the module."
                             }
                         ]
                     }
@@ -511,4 +531,4 @@
     </script>
 </body>
 
-</html>
+</html> class="text-body-1 text-white font-weight-bold
